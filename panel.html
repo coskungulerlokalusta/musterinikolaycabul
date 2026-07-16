@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Müşterini Bul — Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0B1D33; --navy-800:#16324F; --navy-600:#2B5578;
+    --paper:#F6F4EF; --paper-dim:#EDEAE2;
+    --gold:#C9932F; --gold-light:#E4B559;
+    --ink:#14202B; --ink-soft:#4A5A68;
+    --success:#3E8E6B; --danger:#B4453A;
+    --line:rgba(20,32,43,0.12); --radius:12px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper);}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600;}
+  a{color:inherit;}
+  button, input, textarea{font-family:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); font-weight:500;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+  /* ---------- LOGIN SCREEN ---------- */
+  #login-screen{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:var(--navy-950); position:relative; overflow:hidden; padding:20px;
+  }
+  #login-screen::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(ellipse at top right, rgba(201,147,47,0.16), transparent 55%),
+               radial-gradient(ellipse at bottom left, rgba(43,85,120,0.35), transparent 60%);
+  }
+  .login-card{
+    background:var(--paper); border-radius:16px; padding:40px 36px; width:100%; max-width:380px;
+    position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .login-logo{display:flex; align-items:center; gap:8px; margin-bottom:28px; font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
+  .login-mark{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,var(--navy-800),var(--navy-950));display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-size:14px;font-weight:700;}
+  .login-card h1{font-size:1.5rem; margin-bottom:6px;}
+  .login-card > p{color:var(--ink-soft); font-size:0.9rem; margin-bottom:26px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.82rem; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .field input, .field textarea{
+    width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:8px;
+    font-size:0.92rem; background:#fff; color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--gold);}
+  .field-hint{font-size:0.76rem; color:var(--ink-soft); margin-top:5px;}
+  .btn-primary{
+    width:100%; background:var(--navy-950); color:#fff; border:none; border-radius:8px;
+    padding:13px; font-weight:600; font-size:0.92rem; cursor:pointer; transition:background 0.2s;
+  }
+  .btn-primary:hover{background:var(--navy-800);}
+  .btn-gold{background:var(--gold); color:var(--navy-950);}
+  .btn-gold:hover{background:var(--gold-light);}
+  .login-note{margin-top:18px; font-size:0.78rem; color:var(--ink-soft); text-align:center;}
+
+  /* ---------- APP SHELL ---------- */
+  #app-shell{display:none; min-height:100vh;}
+  .app-layout{display:flex; min-height:100vh;}
+  .sidebar{
+    width:230px; background:var(--navy-950); color:#fff; flex-shrink:0;
+    display:flex; flex-direction:column; padding:22px 16px;
+  }
+  .sidebar-logo{display:flex; align-items:center; gap:8px; font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; padding:0 8px 26px;}
+  .sidebar-logo .login-mark{width:24px;height:24px;font-size:13px;}
+  .nav-item{
+    display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:8px;
+    color:rgba(255,255,255,0.65); font-size:0.88rem; font-weight:500; cursor:pointer; margin-bottom:2px;
+  }
+  .nav-item:hover{background:rgba(255,255,255,0.06); color:#fff;}
+  .nav-item.active{background:rgba(255,255,255,0.1); color:#fff;}
+  .nav-item .dot{width:6px; height:6px; border-radius:50%; background:currentColor; opacity:0.5;}
+  .sidebar-foot{margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.1);}
+  .sidebar-user{display:flex; align-items:center; gap:9px; font-size:0.82rem; color:rgba(255,255,255,0.7); padding:8px;}
+  .sidebar-user .avatar{width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--navy-950);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;}
+  .logout-link{display:block; font-size:0.8rem; color:rgba(255,255,255,0.5); padding:8px; cursor:pointer;}
+  .logout-link:hover{color:#fff;}
+
+  .main{flex:1; padding:32px 40px; max-width:920px;}
+  .page{display:none;}
+  .page.active{display:block;}
+  .page-head{margin-bottom:28px;}
+  .page-head h1{font-size:1.6rem; margin-top:6px;}
+  .page-head p{color:var(--ink-soft); font-size:0.92rem; margin-top:6px;}
+
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+  .card + .card{margin-top:18px;}
+  .card h2{font-size:1.05rem; margin-bottom:4px;}
+  .card .sub{color:var(--ink-soft); font-size:0.85rem; margin-bottom:20px;}
+
+  .status-row{display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-top:1px solid var(--line);}
+  .status-row:first-of-type{border-top:none;}
+  .status-left{display:flex; align-items:center; gap:12px;}
+  .status-badge{width:9px; height:9px; border-radius:50%;}
+  .status-badge.ok{background:var(--success);}
+  .status-badge.warn{background:#C9932F;}
+  .status-badge.off{background:var(--danger);}
+  .status-name{font-weight:600; font-size:0.92rem;}
+  .status-desc{font-size:0.8rem; color:var(--ink-soft);}
+  .status-tag{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; padding:4px 10px; border-radius:20px;}
+  .status-tag.ok{background:rgba(62,142,107,0.12); color:var(--success);}
+  .status-tag.warn{background:rgba(201,147,47,0.14); color:var(--gold);}
+
+  .btn-small{padding:9px 16px; border-radius:7px; font-size:0.84rem; font-weight:600; border:1px solid var(--line); background:#fff; cursor:pointer; color:var(--ink);}
+  .btn-small:hover{border-color:var(--navy-800);}
+  .btn-small.primary{background:var(--navy-950); color:#fff; border:none;}
+  .btn-small.primary:hover{background:var(--navy-800);}
+
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+
+  /* Apify search page */
+  .search-row{display:flex; gap:12px; margin-bottom:20px;}
+  .search-row .field{flex:1; margin-bottom:0;}
+  .results-table{width:100%; border-collapse:collapse; font-size:0.88rem;}
+  .results-table th{text-align:left; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; padding:8px 10px; border-bottom:1px solid var(--line);}
+  .results-table td{padding:10px; border-bottom:1px solid var(--line);}
+  .results-table tr:last-child td{border-bottom:none;}
+  .tel-ok{color:var(--success); font-family:'IBM Plex Mono',monospace; font-size:0.78rem;}
+  .results-foot{display:flex; align-items:center; justify-content:space-between; margin-top:18px; font-size:0.85rem; color:var(--ink-soft);}
+  .empty-state{padding:50px 20px; text-align:center; color:var(--ink-soft); font-size:0.9rem;}
+
+  /* Netgsm page */
+  .sms-preview{
+    background:var(--paper-dim); border-radius:10px; padding:16px 18px; font-size:0.88rem;
+    border:1px solid var(--line); margin-top:14px; display:none;
+  }
+  .sms-preview.show{display:block;}
+  .sms-preview .eyebrow{display:block; margin-bottom:8px;}
+  .char-count{font-size:0.76rem; color:var(--ink-soft); text-align:right; margin-top:4px;}
+
+  @media (max-width:840px){
+    .app-layout{flex-direction:column;}
+    .sidebar{width:100%; flex-direction:row; align-items:center; padding:14px 16px;}
+    .sidebar-logo{padding:0; margin-right:auto;}
+    .nav-item span:last-child{display:none;}
+    .sidebar-foot{display:none;}
+    .main{padding:22px 18px;}
+    .two-col{grid-template-columns:1fr;}
+    .search-row{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo"><span class="login-mark">M</span>Müşterini Bul</div>
+    <h1>Panele giriş yap</h1>
+    <p>Firmana tanımlanan e-posta ve şifre ile giriş yap.</p>
+    <div class="field">
+      <label for="email">E-posta</label>
+      <input type="email" id="email" placeholder="firma@ornek.com" value="demo@toptanci.com">
+    </div>
+    <div class="field">
+      <label for="pass">Şifre</label>
+      <input type="password" id="pass" placeholder="••••••••" value="••••••••">
+    </div>
+    <button class="btn-primary btn-gold" onclick="login()">Giriş Yap</button>
+    <p class="login-note">Demo görünümü — herhangi bir bilgiyle giriş yapabilirsin.</p>
+  </div>
+</div>
+
+<!-- ================= APP SHELL ================= -->
+<div id="app-shell">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><span class="login-mark">M</span>Müşterini Bul</div>
+      <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard', this)"><span class="dot"></span><span>Panel</span></div>
+      <div class="nav-item" data-page="apify" onclick="showPage('apify', this)"><span class="dot"></span><span>Apify Arama</span></div>
+      <div class="nav-item" data-page="netgsm" onclick="showPage('netgsm', this)"><span class="dot"></span><span>Netgsm / SMS</span></div>
+      <div class="nav-item" data-page="ayarlar" onclick="showPage('ayarlar', this)"><span class="dot"></span><span>Ayarlar</span></div>
+      <div class="sidebar-foot">
+        <div class="sidebar-user"><span class="avatar">DT</span><span>Demo Toptancı</span></div>
+        <span class="logout-link" onclick="logout()">Çıkış yap</span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- ---- DASHBOARD ---- -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-head">
+          <span class="eyebrow">Genel bakış</span>
+          <h1>Merhaba, Demo Toptancı</h1>
+          <p>Hesabının güncel durumu aşağıda.</p>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h2>Entegrasyon durumu</h2>
+            <p class="sub">Anahtarların bağlantı durumu</p>
+            <div class="status-row">
+              <div class="status-left"><span class="status-badge ok"></span><div><div class="status-name">Apify</div><div class="status-desc">Bağlı, son kullanım bugün</div></div></div>
+              <span class="status-tag ok">aktif</span>
+            </div>
+            <div class="status-row">
+              <div class="status-left"><span class="status-badge warn"></span><div><div class="status-name">Netgsm</div><div class="status-desc">Başlık onayı bekleniyor</div></div></div>
+              <span class="status-tag warn">onay bekliyor</span>
+            </div>
+          </div>
+          <div class="card">
+            <h2>Bu ay</h2>
+            <p class="sub">Kullanım özeti</p>
+            <div class="status-row" style="border-top:none;"><div class="status-left"><div><div class="status-name">Bulunan işletme</div></div></div><span style="font-family:'IBM Plex Mono',monospace;">1.284</span></div>
+            <div class="status-row"><div class="status-left"><div><div class="status-name">Gönderilen SMS</div></div></div><span style="font-family:'IBM Plex Mono',monospace;">960</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- APIFY ---- -->
+      <section class="page" id="page-apify">
+        <div class="page-head">
+          <span class="eyebrow">Müşteri keşfi</span>
+          <h1>Apify Arama</h1>
+          <p>Bölge ve anahtar kelime gir, işletmeleri bul.</p>
+        </div>
+        <div class="card">
+          <div class="search-row">
+            <div class="field"><label>Bölge / İl</label><input type="text" id="bolge" placeholder="Örn. Bursa, Nilüfer" value="Bursa, Nilüfer"></div>
+            <div class="field"><label>Anahtar kelime</label><input type="text" id="kelime" placeholder="Örn. hırdavat toptan" value="hırdavat toptan"></div>
+          </div>
+          <button class="btn-small primary" onclick="runSearch()">Ara</button>
+
+          <div id="results-empty" class="empty-state">Henüz arama yapılmadı. Bölge ve anahtar kelime girip "Ara"ya bas.</div>
+
+          <div id="results-wrap" style="display:none; margin-top:20px;">
+            <table class="results-table">
+              <thead><tr><th>İşletme</th><th>Adres</th><th>Telefon</th></tr></thead>
+              <tbody id="results-body"></tbody>
+            </table>
+            <div class="results-foot">
+              <span id="results-count">0 işletme bulundu</span>
+              <div style="display:flex; gap:10px;">
+                <button class="btn-small">Excel indir</button>
+                <button class="btn-small primary" onclick="showPage('netgsm', document.querySelector('[data-page=netgsm]'))">Netgsm'e aktar →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- NETGSM ---- -->
+      <section class="page" id="page-netgsm">
+        <div class="page-head">
+          <span class="eyebrow">Mesaj gönderimi</span>
+          <h1>Netgsm / SMS</h1>
+          <p>Apify aramasından aktarılan listeye mesajını yaz ve gönder.</p>
+        </div>
+        <div class="card">
+          <h2>Alıcı listesi</h2>
+          <p class="sub" id="netgsm-list-info">Apify Arama sayfasından henüz aktarılmış liste yok.</p>
+
+          <div style="margin-top:18px;">
+            <div class="field">
+              <label for="sms-text">Mesaj metni</label>
+              <textarea id="sms-text" rows="4" placeholder="Örn. Merhaba, [firma adı] olarak bölgenizdeki toptan ihtiyaçlarınız için size özel fiyatlarımızı iletmek isteriz. Detaylar için bizi arayabilirsiniz.">Merhaba, bölgenizdeki toptan hırdavat ihtiyaçlarınız için size özel fiyatlarımızı iletmek isteriz. Detaylar için bizi arayabilirsiniz.</textarea>
+            </div>
+            <div class="char-count"><span id="char-count">0</span> karakter</div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <button class="btn-small" onclick="previewSms()">Önizle</button>
+            <button class="btn-small primary" onclick="sendSms()">Gönder</button>
+          </div>
+          <div class="sms-preview" id="sms-preview-box">
+            <span class="eyebrow">Önizleme</span>
+            <div id="sms-preview-text"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- AYARLAR ---- -->
+      <section class="page" id="page-ayarlar">
+        <div class="page-head">
+          <span class="eyebrow">Hesap</span>
+          <h1>Ayarlar</h1>
+          <p>Apify ve Netgsm bağlantı bilgilerini buradan yönetirsin.</p>
+        </div>
+
+        <div class="card">
+          <h2>Apify bağlantısı</h2>
+          <p class="sub">Google Maps üzerinden işletme taraması için kullanılır.</p>
+          <div class="field">
+            <label for="apify-key">Apify API Key</label>
+            <input type="password" id="apify-key" placeholder="apify_api_••••••••••••" value="apify_api_8f2a1c9e0000">
+            <div class="field-hint">Key'ini bulamıyorsan destek ekibimiz sana adım adım yardımcı olur.</div>
+          </div>
+          <button class="btn-small primary">Kaydet</button>
+          <button class="btn-small">Kurulum yardımı iste</button>
+        </div>
+
+        <div class="card">
+          <h2>Netgsm bağlantısı</h2>
+          <p class="sub">SMS gönderimi için kullanılır. Onaylı başlık (gönderici adı) gerekir.</p>
+          <div class="two-col">
+            <div class="field"><label for="netgsm-user">Netgsm Kullanıcı Kodu</label><input type="text" id="netgsm-user" value="8503xxxxxx"></div>
+            <div class="field"><label for="netgsm-key">Netgsm API Key</label><input type="password" id="netgsm-key" value="ngsm_key_••••••••"></div>
+          </div>
+          <div class="field"><label for="netgsm-baslik">Onaylı Başlık</label><input type="text" id="netgsm-baslik" placeholder="Örn. FIRMAADI" value="">
+            <div class="field-hint">Başlık onayı Netgsm tarafında ayrı bir süreç — henüz onaylanmadıysa aşağıdan başvur.</div>
+          </div>
+          <button class="btn-small primary">Kaydet</button>
+          <button class="btn-small">Başlık onayı başvurusu</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  function login(){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app-shell').style.display='block';
+  }
+  function logout(){
+    document.getElementById('app-shell').style.display='none';
+    document.getElementById('login-screen').style.display='flex';
+  }
+  function showPage(name, el){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+name).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    if(el) el.classList.add('active');
+  }
+
+  const sampleResults = [
+    ['Nilüfer Hırdavat San. Tic.', 'Nilüfer, Bursa', '0224 xxx xx xx'],
+    ['Karaca Toptan Malzeme', 'Osmangazi, Bursa', '0224 xxx xx xx'],
+    ['Aydın Nalburiye Ltd.', 'Yıldırım, Bursa', '0224 xxx xx xx'],
+    ['Ege Hırdavat Merkezi', 'Nilüfer, Bursa', '0224 xxx xx xx'],
+    ['Bursa Toptan Vida', 'Osmangazi, Bursa', '0224 xxx xx xx'],
+  ];
+
+  function runSearch(){
+    const body = document.getElementById('results-body');
+    body.innerHTML='';
+    sampleResults.forEach(r=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${r[0]}</td><td>${r[1]}</td><td class="tel-ok">${r[2]}</td>`;
+      body.appendChild(tr);
+    });
+    document.getElementById('results-empty').style.display='none';
+    document.getElementById('results-wrap').style.display='block';
+    document.getElementById('results-count').textContent = sampleResults.length + ' işletme bulundu';
+    document.getElementById('netgsm-list-info').textContent = sampleResults.length + ' işletme Apify Arama\'dan aktarıldı, gönderime hazır.';
+  }
+
+  function updateCharCount(){
+    document.getElementById('char-count').textContent = document.getElementById('sms-text').value.length;
+  }
+  document.getElementById('sms-text').addEventListener('input', updateCharCount);
+  updateCharCount();
+
+  function previewSms(){
+    const box = document.getElementById('sms-preview-box');
+    document.getElementById('sms-preview-text').textContent = document.getElementById('sms-text').value;
+    box.classList.add('show');
+  }
+  function sendSms(){
+    alert('Demo görünümde gönderim simülasyonu — canlı sistemde bu adımda Netgsm üzerinden gerçek gönderim yapılır.');
+  }
+</script>
+
+</body>
+</html>
