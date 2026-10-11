@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>almakisterim.com</title>
+<meta name="description" content="Ne almak istiyorsan yaz, satıcılar sana teklif versin. Türkiye'nin tersine pazaryeri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F0C24;
+  --ink-2:#2A2650;
+  --muted:#6B6890;
+  --line:#E7E4F3;
+  --bg:#F7F6FC;
+  --card:#FFFFFF;
+  --violet:#5B3DF5;
+  --violet-2:#7B61FF;
+  --violet-soft:#EEEAFF;
+  --lime:#C6F432;
+  --lime-ink:#2C3A00;
+  --coral:#FF6B4A;
+  --coral-soft:#FFEDE8;
+  --green:#14A06B;
+  --green-soft:#E3F7EE;
+  --amber:#F5A524;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(15,12,36,.04),0 8px 28px rgba(15,12,36,.07);
+  --shadow-lg:0 30px 80px -20px rgba(43,24,140,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,.display{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;line-height:1.05}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--violet-2);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.mono{font-family:'JetBrains Mono',monospace}
+.hide{display:none!important}
+
+/* ---------- demo bar ---------- */
+.demo-bar{background:var(--ink);color:#CFCBF0;font-size:12.5px;text-align:center;padding:7px 16px}
+.demo-bar b{color:var(--lime);font-weight:600}
+
+/* ---------- header ---------- */
+header.top{position:sticky;top:0;z-index:60;background:rgba(247,246,252,.82);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:800;font-size:22px;letter-spacing:-.03em}
+.logo-mark{width:34px;height:34px;border-radius:11px;background:var(--violet);display:grid;place-items:center;position:relative;box-shadow:0 6px 16px -4px rgba(91,61,245,.6)}
+.logo-mark svg{width:20px;height:20px}
+.logo .tld{color:var(--muted);font-weight:600}
+.nav-links{display:flex;gap:4px;margin-left:12px}
+.nav-links a{padding:8px 14px;border-radius:999px;font-weight:500;font-size:14.5px;color:var(--ink-2)}
+.nav-links a:hover{background:#ECE9F8}
+.nav-links a.active{background:var(--ink);color:#fff}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:600;font-size:14.5px;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 8px 20px -8px rgba(91,61,245,.7)}
+.btn-primary:hover{background:#4C2EE8}
+.btn-lime{background:var(--lime);color:var(--lime-ink)}
+.btn-lime:hover{background:#B8E826}
+.btn-ghost{background:#fff;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:#CFCAE8}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-lg{padding:15px 24px;font-size:16px}
+.btn-sm{padding:8px 14px;font-size:13.5px}
+.credit-pill{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--lime);color:var(--lime-ink);font-weight:700;font-size:13px}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--coral));color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
+.menu-btn{display:none;width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:64px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-200px -100px auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(123,97,255,.28),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-180px;bottom:-260px;width:620px;height:620px;background:radial-gradient(closest-side,rgba(198,244,50,.35),transparent 70%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-2);box-shadow:var(--shadow)}
+.pill .dot{width:22px;height:22px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-size:11px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(20,160,107,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(20,160,107,.55)}70%{box-shadow:0 0 0 10px rgba(20,160,107,0)}100%{box-shadow:0 0 0 0 rgba(20,160,107,0)}}
+.hero h1{font-size:clamp(44px,6.4vw,86px);font-weight:800;margin:22px 0 18px}
+.hero h1 .flip{display:block;background:linear-gradient(92deg,var(--violet) 10%,#B04BFF 55%,var(--coral) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:560px}
+.composer{margin-top:30px;background:#fff;border-radius:24px;padding:10px;box-shadow:var(--shadow-lg);border:1px solid #E2DDF7;max-width:640px}
+.composer-inner{display:flex;align-items:flex-start;gap:12px;padding:14px 14px 10px}
+.composer .ai-badge{flex:none;width:38px;height:38px;border-radius:12px;background:var(--violet-soft);display:grid;place-items:center;color:var(--violet)}
+.composer textarea{flex:1;border:0;outline:0;resize:none;font-size:18px;line-height:1.45;min-height:56px;background:transparent}
+.composer textarea::placeholder{color:#A9A5C7}
+.composer-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 4px 14px;flex-wrap:wrap}
+.composer-hint{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{padding:8px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13.5px;font-weight:500;color:var(--ink-2);transition:.15s}
+.chip:hover{border-color:var(--violet-2);color:var(--violet)}
+.hero-stats{display:flex;gap:32px;margin-top:34px;flex-wrap:wrap}
+.hero-stats b{display:block;font-family:'Bricolage Grotesque';font-size:30px;font-weight:800;letter-spacing:-.03em}
+.hero-stats span{font-size:13px;color:var(--muted)}
+
+/* hero visual */
+.stage{position:relative;height:560px}
+.stage-card{position:absolute;background:#fff;border-radius:22px;box-shadow:var(--shadow-lg);border:1px solid #E8E4F8}
+.req-card-hero{left:0;right:30px;top:20px;padding:22px}
+.req-card-hero .who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.req-card-hero h3{font-size:24px;margin:12px 0 8px}
+.budget-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--lime);color:var(--lime-ink);font-weight:700;font-size:14px}
+.offer-stream{position:absolute;left:30px;right:0;top:210px;display:flex;flex-direction:column;gap:12px}
+.offer-mini{background:#fff;border:1px solid #E8E4F8;border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);animation:slideIn .55s cubic-bezier(.2,.9,.3,1.2) both}
+.offer-mini.best{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft),var(--shadow)}
+@keyframes slideIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+.offer-mini .logo-s{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.offer-mini .meta{flex:1;min-width:0}
+.offer-mini .meta b{font-size:14.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.offer-mini .meta span{font-size:12.5px;color:var(--muted)}
+.offer-mini .price{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;letter-spacing:-.02em}
+.notif{position:absolute;right:-10px;top:150px;background:var(--ink);color:#fff;border-radius:16px;padding:12px 16px;font-size:13.5px;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-lg);z-index:3;animation:float 4s ease-in-out infinite}
+.notif .n-ico{width:30px;height:30px;border-radius:10px;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;font-weight:800}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:11.5px;font-weight:600}
+.b-green{background:var(--green-soft);color:var(--green)}
+.b-violet{background:var(--violet-soft);color:var(--violet)}
+.b-coral{background:var(--coral-soft);color:#D9441F}
+.b-amber{background:#FFF4DE;color:#A86A00}
+.b-dark{background:var(--ink);color:#fff}
+
+/* ticker */
+.ticker{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:14px 0;border-block:1px solid #221E44}
+.ticker-track{display:inline-flex;gap:40px;animation:marquee 40s linear infinite;padding-left:40px}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.tick{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:#D6D2F5}
+.tick b{color:#fff;font-weight:600}
+.tick .t-off{color:var(--lime);font-weight:600}
+
+/* sections */
+section.block{padding:84px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);font-weight:500}
+.sec-head h2{font-size:clamp(32px,4vw,52px);font-weight:800;margin-top:10px;max-width:720px}
+.sec-head p{color:var(--muted);max-width:440px}
+
+/* categories */
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;transition:.2s;min-height:142px}
+.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#D9D3F3}
+.cat .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px}
+.cat b{font-size:15px;line-height:1.25}
+.cat span{font-size:12.5px;color:var(--muted);margin-top:auto}
+
+/* how */
+.how{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.how-col{border-radius:28px;padding:34px;position:relative;overflow:hidden}
+.how-col.buyer{background:var(--violet);color:#fff}
+.how-col.seller{background:var(--lime);color:var(--lime-ink)}
+.how-col h3{font-size:30px;font-weight:800;margin:8px 0 26px}
+.how-col .how-tag{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.step{display:flex;gap:16px;padding:16px 0;border-top:1px solid rgba(255,255,255,.18)}
+.seller .step{border-top-color:rgba(44,58,0,.15)}
+.step .num{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-family:'Bricolage Grotesque'}
+.buyer .num{background:rgba(255,255,255,.16)}
+.seller .num{background:rgba(44,58,0,.1)}
+.step b{display:block;font-size:17px;margin-bottom:2px}
+.step p{font-size:14.5px;opacity:.82}
+
+/* request cards */
+.req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rq{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:12px;transition:.2s;cursor:pointer;position:relative}
+.rq:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#D6D0F2}
+.rq-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rq h4{font-size:19px;font-weight:700;line-height:1.2}
+.rq .desc{font-size:14px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rq-budget{font-family:'Bricolage Grotesque';font-weight:800;font-size:22px;letter-spacing:-.02em}
+.rq-budget small{font-family:'Inter';font-size:12px;font-weight:500;color:var(--muted);display:block;letter-spacing:0}
+.rq-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted);margin-top:auto}
+.offer-count{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+.offer-count .bubble{min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--violet);color:#fff;display:grid;place-items:center;font-size:12px}
+.offer-count .bubble.zero{background:var(--coral)}
+
+/* compare */
+.compare{background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.compare-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--line)}
+.compare-row:first-child{border-top:0}
+.compare-row>div{padding:18px 24px;font-size:15px}
+.compare-row.head>div{font-weight:700;font-family:'Bricolage Grotesque';font-size:18px}
+.compare-row>div:nth-child(2){color:var(--muted)}
+.compare-row>div:nth-child(3){background:var(--violet-soft);font-weight:600;color:var(--ink)}
+.compare-row.head>div:nth-child(3){background:var(--violet);color:#fff}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.trust-item{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+.trust-item .t-ico{width:44px;height:44px;border-radius:14px;background:var(--violet-soft);color:var(--violet);display:grid;place-items:center;margin-bottom:16px}
+.trust-item b{display:block;font-size:17px;margin-bottom:6px}
+.trust-item p{font-size:14px;color:var(--muted)}
+
+/* pricing band */
+.band{background:var(--ink);color:#fff;border-radius:36px;padding:56px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;right:-120px;top:-120px;width:460px;height:460px;background:radial-gradient(closest-side,rgba(123,97,255,.55),transparent);pointer-events:none}
+.band h2{font-size:clamp(32px,4vw,54px);font-weight:800;max-width:640px;position:relative}
+.band p.lead{color:#BDB8E6;max-width:560px;margin-top:14px;position:relative}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;position:relative}
+.plan{background:#1B173A;border:1px solid #2E2959;border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.plan.hot{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.plan .p-name{font-weight:700;font-size:15px}
+.plan .p-price{font-family:'Bricolage Grotesque';font-size:40px;font-weight:800;letter-spacing:-.03em}
+.plan .p-price small{font-size:15px;font-weight:600;opacity:.7}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;margin:6px 0 14px}
+.plan li::before{content:"✓  ";font-weight:800;color:var(--lime)}
+.plan.hot li::before{color:var(--violet)}
+.plan .btn{margin-top:auto}
+.plan-note{font-size:12px;color:#8F89C2;margin-top:16px;position:relative}
+
+footer{padding:56px 0 40px;color:var(--muted);font-size:14px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;border-top:1px solid var(--line);padding-top:40px}
+.foot-grid b{display:block;color:var(--ink);margin-bottom:10px}
+.foot-grid a{display:block;padding:3px 0}
+.foot-grid a:hover{color:var(--violet)}
+
+/* ---------- pages ---------- */
+.page-head{padding:44px 0 24px}
+.page-head h1{font-size:clamp(34px,4.4vw,56px);font-weight:800}
+.page-head p{color:var(--muted);margin-top:8px;font-size:17px}
+.browse{display:grid;grid-template-columns:270px 1fr;gap:24px;padding-bottom:80px}
+.filters{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;align-self:start;position:sticky;top:88px}
+.filters h5{font-size:12px;font-family:'JetBrains Mono';letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
+.filters h5:first-child{margin-top:0}
+.f-cat{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer}
+.f-cat:hover{background:var(--bg)}
+.f-cat.on{background:var(--violet-soft);color:var(--violet);font-weight:600}
+.f-cat span{font-size:12px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:13px;font-weight:600;color:var(--ink-2)}
+.input,.select,.textarea{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:15px;outline:0;transition:.15s}
+.input:focus,.select:focus,.textarea:focus{border-color:var(--violet-2);box-shadow:0 0 0 4px var(--violet-soft)}
+.textarea{resize:vertical;min-height:110px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.search-big{flex:1;min-width:220px;position:relative}
+.search-big input{padding-left:44px;height:50px;border-radius:999px}
+.search-big svg{position:absolute;left:16px;top:15px;color:var(--muted)}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--ink);color:#fff}
+.switch{position:relative;width:46px;height:28px;border-radius:999px;background:#D7D3EA;transition:.2s;flex:none}
+.switch::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:.2s}
+.switch.on{background:var(--green)}
+.switch.on::after{left:21px}
+.check-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;padding:6px 0}
+.empty{background:#fff;border:1px dashed #D3CEEA;border-radius:22px;padding:48px;text-align:center;color:var(--muted)}
+
+/* detail */
+.detail{display:grid;grid-template-columns:1fr 380px;gap:24px;padding-bottom:80px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px}
+.crumb{font-size:13.5px;color:var(--muted);padding-top:28px}
+.crumb a:hover{color:var(--violet)}
+.detail h1{font-size:clamp(30px,3.6vw,46px);font-weight:800;margin:14px 0}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.kv div{background:var(--bg);border-radius:16px;padding:14px}
+.kv small{display:block;font-size:12px;color:var(--muted)}
+.kv b{font-size:15.5px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:6px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:13px;font-weight:500}
+.view-switch{display:flex;gap:8px;margin:28px 0 16px;align-items:center;flex-wrap:wrap}
+.offers-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.os{border-radius:18px;padding:16px;background:var(--bg)}
+.os small{font-size:12px;color:var(--muted);display:block}
+.os b{font-family:'Bricolage Grotesque';font-size:26px;font-weight:800;letter-spacing:-.02em}
+.os.good{background:var(--green-soft)}
+.os.good b{color:var(--green)}
+.ai-box{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(120deg,#F0ECFF,#F7FFE0);border:1px solid #DED7FF;border-radius:20px;padding:16px 18px;margin-bottom:16px}
+.ai-box .ai-ico{flex:none;width:36px;height:36px;border-radius:12px;background:var(--violet);color:#fff;display:grid;place-items:center}
+.ai-box b{display:block;font-size:14.5px}
+.ai-box p{font-size:14px;color:var(--ink-2)}
+.offer{border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;margin-bottom:12px;background:#fff;transition:.2s}
+.offer:hover{border-color:#D3CCF2}
+.offer.top{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.offer.accepted{border-color:var(--violet);box-shadow:0 0 0 3px var(--violet-soft)}
+.offer .s-logo{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px}
+.offer .s-name{font-weight:700;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.offer .s-meta{font-size:13px;color:var(--muted);margin-top:2px}
+.offer .s-note{font-size:14px;color:var(--ink-2);margin-top:8px}
+.offer .s-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.offer .o-right{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.offer .o-price{font-family:'Bricolage Grotesque';font-weight:800;font-size:28px;letter-spacing:-.02em}
+.offer .o-diff{font-size:12.5px;font-weight:600}
+.side-stack{display:flex;flex-direction:column;gap:16px;align-self:start;position:sticky;top:88px}
+.buyer-box{display:flex;align-items:center;gap:12px}
+.lock-note{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);background:var(--bg);border-radius:14px;padding:12px;margin-top:14px}
+.big-budget{font-family:'Bricolage Grotesque';font-weight:800;font-size:36px;letter-spacing:-.03em}
+.countdown{display:flex;gap:8px;margin-top:10px}
+.countdown div{flex:1;background:var(--ink);color:#fff;border-radius:12px;padding:10px 4px;text-align:center}
+.countdown b{display:block;font-family:'Bricolage Grotesque';font-size:22px}
+.countdown small{font-size:11px;color:#BDB8E6}
+
+/* create */
+.create{display:grid;grid-template-columns:1fr 400px;gap:24px;padding-bottom:80px}
+.ai-composer{background:var(--ink);color:#fff;border-radius:26px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.ai-composer::after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;background:radial-gradient(closest-side,rgba(123,97,255,.6),transparent);pointer-events:none}
+.ai-composer textarea{width:100%;background:#1B173A;border:1px solid #332D66;border-radius:16px;color:#fff;padding:16px;font-size:17px;resize:vertical;min-height:110px;outline:0;position:relative;z-index:1}
+.ai-composer textarea:focus{border-color:var(--violet-2)}
+.ai-composer .row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;position:relative;z-index:1;flex-wrap:wrap}
+.ai-composer h3{font-size:22px;margin-bottom:12px;position:relative;z-index:1;display:flex;align-items:center;gap:10px}
+.ai-status{font-size:13px;color:#BDB8E6;display:flex;align-items:center;gap:8px}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.25);border-top-color:var(--lime);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mod-result{border-radius:14px;padding:12px 14px;font-size:14px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.mod-ok{background:var(--green-soft);color:#0B6B47}
+.mod-warn{background:#FFF4DE;color:#8A5600}
+.mod-bad{background:var(--coral-soft);color:#B5300F}
+.cond-seg{display:flex;gap:8px;flex-wrap:wrap}
+.cond-seg button{padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:500}
+.cond-seg button.on{border-color:var(--violet);background:var(--violet-soft);color:var(--violet);font-weight:600}
+.preview-label{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.reach{background:var(--lime);color:var(--lime-ink);border-radius:20px;padding:18px;display:flex;gap:14px;align-items:center}
+.reach b{font-family:'Bricolage Grotesque';font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
+
+/* seller dashboard */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px}
+.tile small{font-size:13px;color:var(--muted)}
+.tile b{display:block;font-family:'Bricolage Grotesque';font-size:36px;font-weight:800;letter-spacing:-.03em;margin-top:6px}
+.tile .delta{font-size:12.5px;color:var(--green);font-weight:600}
+.tile.lime{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+.tile.lime small{color:var(--lime-ink);opacity:.75}
+.dash{display:grid;grid-template-columns:1fr 360px;gap:24px;padding-bottom:80px}
+.match-row{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.match-row:first-of-type{border-top:0}
+.ring{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;font-family:'Bricolage Grotesque'}
+.match-row b{font-size:16px}
+.match-row .m-meta{font-size:13px;color:var(--muted);margin-top:2px}
+.alarm-chips{display:flex;flex-wrap:wrap;gap:8px}
+.alarm-chips span{padding:7px 12px;border-radius:999px;background:var(--violet-soft);color:var(--violet);font-size:13px;font-weight:600}
+.my-offer{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14px;gap:10px}
+
+/* admin */
+.admin-tabs{display:inline-flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.cat-admin{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cat-admin-item{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;transition:.2s}
+.cat-admin-item.off{opacity:.55;background:#FAFAFD}
+.cat-admin-item .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;flex:none}
+.cat-admin-item .info{flex:1}
+.cat-admin-item .info b{display:block;font-size:15px}
+.cat-admin-item .info span{font-size:12.5px;color:var(--muted)}
+.mod-item{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:10px}
+.mod-item b{font-size:15.5px}
+.mod-item .why{font-size:13px;margin-top:6px}
+.notice{background:var(--violet-soft);color:var(--ink-2);border-radius:16px;padding:14px 16px;font-size:14px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}
+
+/* modal + toast */
+.overlay{position:fixed;inset:0;background:rgba(15,12,36,.55);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.show{display:flex}
+.modal{background:#fff;border-radius:28px;width:100%;max-width:440px;padding:30px;position:relative;animation:pop .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.modal h3{font-size:28px;font-weight:800;margin-bottom:6px}
+.modal .sub{color:var(--muted);font-size:14.5px;margin-bottom:20px}
+.modal .x{position:absolute;right:18px;top:18px;width:36px;height:36px;border-radius:50%;background:var(--bg);font-size:18px}
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;border-radius:14px;border:1px solid var(--line);font-weight:600;background:#fff}
+.google-btn:hover{background:var(--bg)}
+.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;margin:18px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.otp{display:flex;gap:8px;justify-content:space-between}
+.otp input{width:100%;height:56px;text-align:center;font-size:22px;font-weight:700;border-radius:14px;border:1px solid var(--line);outline:0}
+.otp input:focus{border-color:var(--violet-2);box-shadow:0 0 0 4px var(--violet-soft)}
+.toasts{position:fixed;right:20px;bottom:20px;z-index:120;display:flex;flex-direction:column;gap:10px;max-width:360px}
+.toast{background:var(--ink);color:#fff;border-radius:16px;padding:14px 16px;font-size:14px;box-shadow:var(--shadow-lg);display:flex;gap:12px;align-items:center;animation:slideIn .4s cubic-bezier(.2,.9,.3,1.2)}
+.toast .t-i{width:30px;height:30px;border-radius:10px;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;font-weight:800;flex:none}
+.confetti{position:fixed;top:-10px;width:10px;height:14px;z-index:130;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .req-grid{grid-template-columns:repeat(2,1fr)}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:960px){
+  .hero-grid,.how,.detail,.create,.dash,.browse{grid-template-columns:1fr}
+  .stage{height:520px;max-width:520px}
+  .filters,.side-stack{position:static}
+  .plans{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:#fff;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .menu-btn{display:grid;place-items:center}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .band{padding:36px 24px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .req-grid,.trust,.cat-admin{grid-template-columns:1fr}
+  .kv{grid-template-columns:repeat(2,1fr)}
+  .offers-summary{grid-template-columns:1fr}
+  .offer{grid-template-columns:auto 1fr}
+  .offer .o-right{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}
+  .compare-row{grid-template-columns:1fr 1fr 1fr}
+  .compare-row>div{padding:12px;font-size:13px}
+  .compare-row.head>div{font-size:14px}
+  .row2{grid-template-columns:1fr}
+  .stage{height:500px}
+  .notif{right:0;top:170px}
+  .nav-right .btn-ghost{display:none}
+  .credit-pill{display:none}
+  section.block{padding:60px 0}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tile b{font-size:28px}
+}
+@media (max-width:440px){
+  .logo .tld{display:none}
+  .logo{font-size:20px}
+  .nav{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar"><b>ÖNİZLEME</b> · Tasarım önizlemesidir; ilanlar, satıcılar ve fiyatlar örnektir. Gerçek gönderim veya ödeme yapılmaz.</div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a href="#/" class="logo" aria-label="almakisterim ana sayfa">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.2 4.2L19 7" stroke="#C6F432" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>almakisterim<span class="tld">.com</span></span>
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#/talepler" data-nav="talepler">Talepler</a>
+      <a href="#/olustur" data-nav="olustur">Talep oluştur</a>
+      <a href="#/satici" data-nav="satici">Satıcı paneli</a>
+      <a href="#/yonetim" data-nav="yonetim">Yönetim</a>
+    </nav>
+    <div class="nav-right" id="nav-right"></div>
+    <button class="menu-btn" aria-label="Menü" onclick="document.getElementById('nav-links').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.2 4.2L19 7" stroke="#C6F432" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>almakisterim<span class="tld">.com</span></span></div>
+        <p style="max-width:320px">Ne almak istiyorsan yaz, satıcılar sana gelsin. Alıcılar için her zaman ücretsiz.</p>
+      </div>
+      <div><b>Alıcılar</b><a href="#/olustur">Talep oluştur</a><a href="#/talepler">Talepleri gez</a><a href="#/">Nasıl çalışır</a></div>
+      <div><b>Satıcılar</b><a href="#/satici">Satıcı paneli</a><a href="#/talepler">Teklif ver</a><a href="#/">Mağaza üyeliği</a></div>
+      <div><b>Kurumsal</b><a href="#/">Hakkımızda</a><a href="#/">KVKK ve gizlilik</a><a href="#/">İletişim</a></div>
+    </div>
+    <p style="margin-top:28px;font-size:13px">© 2026 almakisterim.com</p>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   VERİ (örnek)
+   ========================================================= */
+const CATS = [
+  {id:'elektronik', name:'Elektronik', ico:'📱', bg:'#EEEAFF'},
+  {id:'vasita', name:'Vasıta', ico:'🚗', bg:'#FFEDE8'},
+  {id:'emlak', name:'Emlak', ico:'🏠', bg:'#E3F7EE'},
+  {id:'ev', name:'Ev & Yaşam', ico:'🛋️', bg:'#FFF4DE'},
+  {id:'moda', name:'Moda & Giyim', ico:'👟', bg:'#FDE8F3'},
+  {id:'hizmet', name:'Hizmet & Usta', ico:'🛠️', bg:'#E6F1FF'},
+  {id:'yedek', name:'Yedek Parça', ico:'⚙️', bg:'#EEF0F4'},
+  {id:'sanayi', name:'İş Makinesi & Sanayi', ico:'🏗️', bg:'#FFF1D6'},
+  {id:'hobi', name:'Hobi & Oyun', ico:'🎮', bg:'#EAF9D4'},
+  {id:'bebek', name:'Anne & Bebek', ico:'🍼', bg:'#FFE9EC'},
+  {id:'spor', name:'Spor & Outdoor', ico:'🚴', bg:'#E0F7F6'},
+  {id:'toptan', name:'Toptan & B2B', ico:'📦', bg:'#F1ECE4'},
+];
+const CITIES = ['Tüm Türkiye','İstanbul','Ankara','İzmir','Bursa','Antalya','Konya','Adana','Kocaeli','Gaziantep','Kayseri','Eskişehir','Mersin','Samsun','Trabzon','Denizli'];
+
+const SELLERS = {
+  td:{name:'Teknoloji Dünyası', type:'Mağaza', rating:4.9, sales:1240, verified:true, color:'#5B3DF5', city:'İstanbul'},
+  ms:{name:'Mobil Sepet', type:'Mağaza', rating:4.7, sales:860, verified:true, color:'#FF6B4A', city:'Ankara'},
+  ak:{name:'Ahmet K.', type:'Bireysel', rating:4.8, sales:23, verified:true, color:'#14A06B', city:'İstanbul'},
+  ep:{name:'Ege Phone', type:'Mağaza', rating:4.5, sales:410, verified:false, color:'#0EA5E9', city:'İzmir'},
+  zt:{name:'Zeynep T.', type:'Bireysel', rating:5.0, sales:8, verified:true, color:'#B04BFF', city:'Bursa'},
+  og:{name:'Oto Galeri Nur', type:'Mağaza', rating:4.6, sales:310, verified:true, color:'#0F0C24', city:'Ankara'},
+  em:{name:'Kuzey Emlak', type:'Mağaza', rating:4.8, sales:190, verified:true, color:'#F5A524', city:'İzmir'},
+  us:{name:'Usta Hasan', type:'Bireysel', rating:4.9, sales:142, verified:true, color:'#D9441F', city:'İstanbul'},
+};
+
+const SEED = [
+  {id:'r1', title:'2. el iPhone 13 almak istiyorum', cat:'elektronik', min:17000, max:20000, city:'İstanbul', district:'Kadıköy', cond:'2. el', hours:2, days:6, urgent:true,
+   desc:'128 GB veya üstü, pil sağlığı en az %85 olsun. Kutusu ve faturası olursa tercih ederim. Elden teslim veya kargo olabilir.', tags:['128 GB+','Pil %85+','Faturalı','Kutulu'], buyer:{name:'Elif S.', rating:4.9, verified:true},
+   offers:[
+     {s:'td', price:18750, cond:'2. el · Çok iyi', delivery:'Ertesi gün kargo', note:'128 GB, pil %89, kutulu ve faturalı. 6 ay mağaza garantisi veriyoruz.', warranty:true, hours:1},
+     {s:'ak', price:17500, cond:'2. el · İyi', delivery:'Kadıköy elden', note:'Kendi telefonum, pil %86. Kutusu var, faturası yok.', warranty:false, hours:1.5},
+     {s:'ms', price:19400, cond:'Yenilenmiş · A+', delivery:'Aynı gün kurye', note:'256 GB, yenilenmiş A+ kalite, 12 ay garanti.', warranty:true, hours:0.5},
+     {s:'ep', price:18200, cond:'2. el · İyi', delivery:'2 gün kargo', note:'128 GB, pil %87, ekran koruyucu hediye.', warranty:false, hours:0.3},
+   ]},
+  {id:'r2', title:'Ailemiz için 2018 sonrası otomatik dizel SUV', cat:'vasita', min:900000, max:1200000, city:'Ankara', district:'Çankaya', cond:'2. el', hours:5, days:20, urgent:false,
+   desc:'En fazla 120.000 km, boyasız veya az boyalı olsun. Takas yok, nakit alacağım. Ekspertiz raporu şart.', tags:['Otomatik','Dizel','≤120.000 km','Ekspertizli'], buyer:{name:'Murat D.', rating:4.7, verified:true},
+   offers:[
+     {s:'og', price:1145000, cond:'2019 · 98.000 km', delivery:'Galeride görüntüleme', note:'Tek parça boyalı, tam ekspertiz raporu hazır. Servis bakımlı.', warranty:false, hours:3},
+   ]},
+  {id:'r3', title:'İzmir Bornova\'da öğrenciye uygun 1+1 kiralık', cat:'emlak', min:12000, max:16000, city:'İzmir', district:'Bornova', cond:'Farketmez', hours:9, days:14, urgent:true,
+   desc:'Ege Üniversitesi\'ne yürüme mesafesinde, eşyalı veya yarı eşyalı. Eylül başında taşınmak istiyorum.', tags:['1+1','Eşyalı','Üniversiteye yakın'], buyer:{name:'Deniz A.', rating:5.0, verified:true},
+   offers:[
+     {s:'em', price:14500, cond:'1+1 · Eşyalı', delivery:'Hemen boş', note:'Kampüse 8 dk yürüme. Aidat dahil, doğalgazlı.', warranty:false, hours:6},
+     {s:'zt', price:13000, cond:'1+1 · Yarı eşyalı', delivery:'1 Eylül', note:'Sahibinden, aracı yok. Yeni boyandı.', warranty:false, hours:2},
+   ]},
+  {id:'r4', title:'PlayStation 5 + 2 kol, temiz olsun', cat:'hobi', min:14000, max:18000, city:'Bursa', district:'Nilüfer', cond:'2. el', hours:1, days:7, urgent:false,
+   desc:'Diskli versiyon tercihimdir. Oyun varsa fiyatına ekleyebiliriz.', tags:['Diskli','2 kol'], buyer:{name:'Can Y.', rating:4.6, verified:true}, offers:[]},
+  {id:'r5', title:'Mutfak dolabı yenileme için usta arıyorum', cat:'hizmet', min:40000, max:65000, city:'İstanbul', district:'Ataşehir', cond:'Hizmet', hours:12, days:10, urgent:false,
+   desc:'Yaklaşık 4 metre üst-alt dolap, akrilik kapak, tezgah dahil. Keşfe gelebilecek ustalar teklif versin.', tags:['Akrilik kapak','Tezgah dahil','Keşif'], buyer:{name:'Ayşe K.', rating:4.8, verified:true},
+   offers:[
+     {s:'us', price:52000, cond:'Malzeme + işçilik', delivery:'Keşif yarın', note:'15 yıllık tecrübe, 2 yıl işçilik garantisi. Örnek işlerimi gösterebilirim.', warranty:true, hours:8},
+   ]},
+  {id:'r6', title:'MacBook Air M2, 16 GB RAM', cat:'elektronik', min:30000, max:38000, city:'Tüm Türkiye', district:'', cond:'Sıfır', hours:20, days:12, urgent:false,
+   desc:'Kapalı kutu veya teşhir olabilir. Türkiye garantili olmalı.', tags:['16 GB','Türkiye garantili'], buyer:{name:'Okan B.', rating:4.5, verified:false},
+   offers:[
+     {s:'td', price:36900, cond:'Sıfır · Kapalı kutu', delivery:'Ertesi gün kargo', note:'Apple Türkiye garantili, faturalı.', warranty:true, hours:15},
+     {s:'ms', price:35400, cond:'Teşhir · Kusursuz', delivery:'2 gün kargo', note:'Kutulu, 2 yıl garanti devam ediyor.', warranty:true, hours:10},
+   ]},
+  {id:'r7', title:'Bebek arabası travel sistem', cat:'bebek', min:5000, max:9000, city:'Konya', district:'Selçuklu', cond:'2. el', hours:30, days:5, urgent:false,
+   desc:'Ana kucağı ile birlikte, katlanınca bagaja sığsın.', tags:['Ana kucağı dahil'], buyer:{name:'Merve Ç.', rating:4.9, verified:true}, offers:[]},
+  {id:'r8', title:'Restoranım için 500 adet porselen tabak', cat:'toptan', min:60000, max:90000, city:'Antalya', district:'Muratpaşa', cond:'Sıfır', hours:4, days:15, urgent:true,
+   desc:'Otel tipi, beyaz, bulaşık makinesine uygun. Faturalı toptan alım, aylık tekrar edebilir.', tags:['Faturalı','500 adet','Tekrarlı alım'], buyer:{name:'Lara Kitchen', rating:4.7, verified:true}, offers:[]},
+  {id:'r9', title:'Yol bisikleti, karbon kadro, 54 beden', cat:'spor', min:25000, max:40000, city:'Eskişehir', district:'', cond:'2. el', hours:40, days:9, urgent:false,
+   desc:'Shimano 105 veya üstü grup set. Kaza geçirmemiş olsun.', tags:['Karbon','54 beden','105+'], buyer:{name:'Kerem T.', rating:4.4, verified:true}, offers:[
+     {s:'zt', price:31000, cond:'2. el · Çok iyi', delivery:'Kargo', note:'2 sezon kullanıldı, bakımları yapıldı.', warranty:false, hours:20},
+   ]},
+];
+
+const MOD_QUEUE = [
+  {id:'m1', title:'Ucuz ehliyet almak istiyorum', why:'Yasa dışı ürün/hizmet şüphesi', level:'bad'},
+  {id:'m2', title:'iPhone 15 almak istiyorum, beni 0532 xxx xx xx\'ten arayın', why:'İlan içinde telefon numarası paylaşılmış (otomatik gizlendi)', level:'warn'},
+  {id:'m3', title:'Teklif veren herkese 100 TL hediye, linke tıklayın', why:'Spam / dolandırıcılık kalıbı', level:'bad'},
+];
+
+/* =========================================================
+   DURUM (tarayıcıda saklanır, demo)
+   ========================================================= */
+const STORE_KEY = 'almakisterim_demo_v1';
+let S = {hidden:[], requests:SEED, credits:12, myOffers:[], user:null, accepted:{}, modDone:[]};
+try{ const raw = localStorage.getItem(STORE_KEY); if(raw){ const s = JSON.parse(raw); S = Object.assign(S, s); } }catch(e){}
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){} }
+
+/* =========================================================
+   YARDIMCILAR
+   ========================================================= */
+const fmt = n => new Intl.NumberFormat('tr-TR').format(Math.round(n));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const catOf = id => CATS.find(c => c.id === id) || CATS[0];
+const visibleCats = () => CATS.filter(c => !S.hidden.includes(c.id));
+const visibleReqs = () => S.requests.filter(r => !S.hidden.includes(r.cat));
+const ago = h => h < 1 ? Math.max(1, Math.round(h*60)) + ' dk önce' : h < 24 ? Math.round(h) + ' saat önce' : Math.round(h/24) + ' gün önce';
+const initials = n => n.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase();
+const ICON = {
+  spark:'<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9z"/><path d="M19 15l.9 2.6 2.6.9-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9z" opacity=".7"/></svg>',
+  pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>',
+  clock:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  check:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+  lock:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 118 0v3"/></svg>',
+  shield:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
+  star:'★',
+  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+  bell:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 8a6 6 0 1112 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 004 0"/></svg>',
+  chat:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 01-11.8 7L4 20l1.1-4.4A8 8 0 1121 12z"/></svg>',
+  eye:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+};
+const verifiedBadge = '<span class="badge b-green">'+ICON.check+' Doğrulanmış</span>';
+
+function toast(msg, ico='✓'){
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<span class="t-i">'+ico+'</span><span>'+msg+'</span>';
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(() => { t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(() => t.remove(), 400); }, 3800);
+}
+function confetti(){
+  const colors = ['#5B3DF5','#C6F432','#FF6B4A','#14A06B','#F5A524','#B04BFF'];
+  for(let i=0;i<70;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = (1.8 + Math.random()*1.6) + 's';
+    c.style.animationDelay = (Math.random()*.4) + 's';
+    c.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3800);
+  }
+}
+function openModal(html){ document.getElementById('modal').innerHTML = '<button class="x" aria-label="Kapat" onclick="closeModal()">×</button>' + html; document.getElementById('overlay').classList.add('show'); }
+function closeModal(){ document.getElementById('overlay').classList.remove('show'); }
+
+/* =========================================================
+   YAPAY ZEKÂ (demo: tarayıcıda basit kural tabanlı;
+   gerçek sistemde sunucu tarafında Claude ile yapılacak)
+   ========================================================= */
+const CAT_WORDS = {
+  elektronik:['iphone','samsung','telefon','laptop','macbook','bilgisayar','tablet','ipad','kulaklık','televizyon','tv','monitör','kamera','xiaomi','airpods','saat'],
+  vasita:['araba','otomobil','suv','sedan','motosiklet','motor','araç','dizel','benzinli','hatchback','kamyonet','tofaş','fiat','renault','bmw','mercedes','volkswagen','toyota'],
+  emlak:['kiralık','satılık','daire','ev ','1+1','2+1','3+1','4+1','arsa','villa','dükkan','ofis'],
+  ev:['koltuk','masa','dolap','buzdolabı','çamaşır','bulaşık','yatak','halı','mobilya','kanepe'],
+  moda:['ayakkabı','mont','elbise','çanta','sneaker','ceket','gömlek'],
+  hizmet:['usta','tadilat','boya','tamir','nakliyat','temizlik','ders','tesisat','elektrikçi'],
+  yedek:['yedek parça','far','jant','lastik','tampon','motor bloğu'],
+  sanayi:['iş makinesi','kepçe','forklift','jeneratör','kompresör','cnc'],
+  hobi:['playstation','ps5','ps4','xbox','nintendo','oyun','gitar','piyano','drone','lego'],
+  bebek:['bebek','mama sandalyesi','puset','oto koltuğu'],
+  spor:['bisiklet','koşu bandı','dambıl','kamp','çadır','kayak'],
+  toptan:['toptan','adet','koli','tedarik','b2b'],
+};
+function aiParse(text){
+  const raw = text.trim();
+  const t = raw.toLocaleLowerCase('tr');
+  // kategori
+  let cat = 'elektronik', best = 0;
+  for(const [id, words] of Object.entries(CAT_WORDS)){
+    const score = words.filter(w => t.includes(w)).length;
+    if(score > best){ best = score; cat = id; }
+  }
+  // bütçe
+  let min = null, max = null;
+  const toNum = (n, unit) => { let v = parseFloat(n.replace(/\./g,'').replace(/\s/g,'').replace(',','.')); if(unit==='bin'||unit==='k') v*=1000; if(unit==='milyon') v*=1e6; return v; };
+  const range = t.match(/(\d[\d.,]*)\s*(bin|milyon|k)?\s*[-–ile]{1,3}\s*(\d[\d.,]*)\s*(bin|milyon|k)?\s*(tl|₺|lira)?/);
+  const m = [...t.matchAll(/(\d{1,3}(?:[.\s]\d{3})+|\d+(?:,\d+)?)\s*(bin|milyon|k)?\s*(tl|₺|lira)?/g)]
+            .filter(x => x[2] || x[3]).map(x => toNum(x[1], x[2])).filter(v => v >= 100);
+  if(range && (range[2]||range[4]||range[5])){
+    const u = range[4] || range[2];
+    min = toNum(range[1], range[2] || u); max = toNum(range[3], u);
+  } else if(m.length){ max = Math.max(...m); min = Math.round(max * .8 / 100) * 100; }
+  // şehir
+  const city = CITIES.slice(1).find(c => t.includes(c.toLocaleLowerCase('tr'))) || 'Tüm Türkiye';
+  // durum
+  let cond = 'Farketmez';
+  if(/2\.?\s?el|ikinci el|kullanılmış/.test(t)) cond = '2. el';
+  else if(/sıfır|kapalı kutu|yeni/.test(t)) cond = 'Sıfır';
+  if(cat === 'hizmet') cond = 'Hizmet';
+  // başlık
+  let title = raw.split(/[,;\n]|\.\s+(?=[A-ZÇĞİÖŞÜ])/)[0].replace(/\s*(bütçem|bütçe)\b.*$/i,'').trim();
+  title = title.replace(/\s+/g,' ');
+  if(title.length > 72) title = title.slice(0, 70) + '…';
+  title = title.charAt(0).toLocaleUpperCase('tr') + title.slice(1);
+  // özellikler
+  const tags = [];
+  const gb = t.match(/(\d{2,4})\s?gb/); if(gb) tags.push(gb[1] + ' GB');
+  ['faturalı','kutulu','garantili','eşyalı','otomatik','dizel','benzinli','boyasız','orijinal','hasarsız'].forEach(w => { if(t.includes(w)) tags.push(w.charAt(0).toLocaleUpperCase('tr') + w.slice(1)); });
+  const urgent = /acil|hemen|bugün|yarın/.test(t);
+  return {title, cat, min, max, city, cond, tags, urgent};
+}
+function aiModerate(text){
+  const t = text.toLocaleLowerCase('tr');
+  if(/ehliyet al|sahte|silah|uyuşturucu|kaçak|reçetesiz/.test(t)) return {level:'bad', msg:'Bu talep yasa dışı veya yasaklı bir ürün/hizmet içeriyor olabilir. Yayınlanmadan önce ekibimiz inceleyecek.'};
+  if(/(\+?90|0)?\s?5\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/.test(t) || /\S+@\S+\.\S+/.test(t)) return {level:'warn', msg:'Telefon numarası veya e-posta yazmışsın. Güvenliğin için bunları gizledik: satıcılar sana platform içinden ulaşacak.'};
+  return {level:'ok', msg:'İçerik kontrolü tamam: uygunsuz içerik bulunmadı.'};
+}
+function maskContacts(text){
+  return text.replace(/(\+?90|0)?\s?5\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g, '[numara gizlendi]').replace(/\S+@\S+\.\S+/g, '[e-posta gizlendi]');
+}
+function offerScore(o, offers){
+  const s = SELLERS[o.s] || o.seller;
+  const prices = offers.map(x => x.price); const lo = Math.min(...prices), hi = Math.max(...prices);
+  const p = hi === lo ? 1 : 1 - (o.price - lo) / (hi - lo);
+  return p * .5 + (s.rating / 5) * .3 + (s.verified ? .1 : 0) + (o.warranty ? .1 : 0);
+}
+
+/* =========================================================
+   ORTAK PARÇALAR
+   ========================================================= */
+function renderNavRight(){
+  const el = document.getElementById('nav-right');
+  if(S.user){
+    el.innerHTML = '<span class="credit-pill" title="Teklif kredisi">⚡ '+S.credits+' kredi</span>' +
+      '<a href="#/olustur" class="btn btn-primary btn-sm">+ Talep oluştur</a>' +
+      '<button class="avatar" title="'+esc(S.user.name)+' · çıkış yap" onclick="logout()">'+initials(S.user.name)+'</button>';
+  } else {
+    el.innerHTML = '<button class="btn btn-ghost btn-sm" onclick="openLogin()">Giriş yap</button>' +
+      '<a href="#/olustur" class="btn btn-primary btn-sm">+ Talep oluştur</a>';
+  }
+}
+function reqCard(r){
+  const c = catOf(r.cat); const n = r.offers.length;
+  return '<article class="rq" onclick="location.hash=\'#/talep/'+r.id+'\'" tabindex="0" onkeydown="if(event.key===\'Enter\')this.click()">' +
+    '<div class="rq-top"><span class="badge b-violet">'+c.ico+' '+esc(c.name)+'</span>' + (r.urgent ? '<span class="badge b-coral">⚡ Acil</span>' : '') + '<span class="badge b-amber">'+esc(r.cond)+'</span></div>' +
+    '<h4>'+esc(r.title)+'</h4>' +
+    '<div class="desc">'+esc(r.desc)+'</div>' +
+    '<div class="rq-budget"><small>Bütçe</small>'+(r.min ? fmt(r.min)+' – ' : '')+fmt(r.max)+' TL</div>' +
+    '<div class="rq-foot"><span style="display:flex;gap:6px;align-items:center">'+ICON.pin+esc(r.city)+(r.district ? ', '+esc(r.district) : '')+'</span>' +
+    '<span class="offer-count"><span class="bubble'+(n?'':' zero')+'">'+n+'</span>'+(n ? 'teklif' : 'ilk teklifi ver')+'</span></div>' +
+  '</article>';
+}
+function sellerLogo(s, cls='s-logo'){ return '<div class="'+cls+'" style="background:'+s.color+'">'+initials(s.name)+'</div>'; }
+
+/* =========================================================
+   SAYFALAR
+   ========================================================= */
+function pageHome(){
+  const cats = visibleCats(); const reqs = visibleReqs();
+  const tickItems = reqs.map(r => '<span class="tick">'+catOf(r.cat).ico+' <span>'+esc(r.city)+'</span> · <b>'+esc(r.title)+'</b> · <span class="t-off">'+(r.offers.length ? r.offers.length+' teklif' : 'yeni')+'</span></span>').join('');
+  return `
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot">✦</span><span class="live-dot"></span> Şu an <b class="mono" id="live-count">1.284</b> alıcı satıcı bekliyor</span>
+        <h1>Ne almak istiyorsan yaz.<span class="flip">Satıcılar sana gelsin.</span></h1>
+        <p class="lead">İlanları tek tek gezme. Ne aradığını ve bütçeni yaz; satıcılar sana teklif versin, sen en iyisini seç. Alıcılar için tamamen ücretsiz.</p>
+        <div class="composer">
+          <div class="composer-inner">
+            <span class="ai-badge">${ICON.spark}</span>
+            <textarea id="hero-input" rows="2" aria-label="Ne almak istiyorsun?" placeholder=""></textarea>
+          </div>
+          <div class="composer-foot">
+            <span class="composer-hint">${ICON.lock} Telefon numaran satıcılara gösterilmez</span>
+            <button class="btn btn-primary btn-lg" onclick="startCreate()">Talebimi yayınla →</button>
+          </div>
+        </div>
+        <div class="chips">
+          ${['PS5 almak istiyorum','Kadıköy\'de 2+1 kiralık','Düğün fotoğrafçısı','Toptan 1000 adet tişört','2015 sonrası Egea'].map(x => '<button class="chip" onclick="fillHero(this.textContent)">'+esc(x)+'</button>').join('')}
+        </div>
+        <div class="hero-stats">
+          <div><b>3 dk</b><span>ilk teklif için ortalama süre*</span></div>
+          <div><b>%14</b><span>bütçenin altında ortalama teklif*</span></div>
+          <div><b>0 TL</b><span>alıcı için ücret</span></div>
+        </div>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="stage-card req-card-hero">
+          <div class="who"><span class="avatar" style="width:28px;height:28px;font-size:11px">ES</span> Elif S. · Kadıköy · 2 dk önce ${verifiedBadge}</div>
+          <h3>2. el iPhone 13 almak istiyorum</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="budget-tag">Bütçe 20.000 TL</span><span class="badge b-coral">⚡ Acil</span><span class="badge b-violet">128 GB+</span></div>
+        </div>
+        <div class="notif"><span class="n-ico">+1</span><div><b>Yeni teklif geldi</b><br><span style="color:#BDB8E6;font-size:12.5px">bütçenin %9 altında</span></div></div>
+        <div class="offer-stream" id="offer-stream"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker"><div class="ticker-track">${tickItems}${tickItems}</div></div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Kategoriler</span><h2>Her şey için bir alıcı var.</h2></div>
+        <p>Telefondan eve, arabadan ustaya kadar. Almak istediğin şey hangi kategorideyse talebini oraya bırak.</p>
+      </div>
+      <div class="cat-grid">
+        ${cats.map(c => { const n = reqs.filter(r => r.cat === c.id).length; return '<a class="cat" href="#/talepler?k='+c.id+'"><span class="ico" style="background:'+c.bg+'">'+c.ico+'</span><b>'+esc(c.name)+'</b><span>'+(n ? n+' aktif talep' : 'İlk talebi sen ver')+'</span></a>'; }).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Nasıl çalışır</span><h2>Klasik ilan sitesinin tam tersi.</h2></div></div>
+      <div class="how">
+        <div class="how-col buyer">
+          <span class="how-tag">Alıcıysan</span><h3>Yaz, bekle, seç.</h3>
+          <div class="step"><span class="num">1</span><div><b>Ne istediğini yaz</b><p>Kendi cümlelerinle yaz, yapay zekâ ilanını düzenlesin. Kategori, bütçe ve konum otomatik dolar.</p></div></div>
+          <div class="step"><span class="num">2</span><div><b>Teklifler gelsin</b><p>Uygun satıcılara anında bildirim gider. Teklifler bildirim olarak telefonuna düşer.</p></div></div>
+          <div class="step"><span class="num">3</span><div><b>Karşılaştır ve seç</b><p>Fiyat, puan ve garantiye göre karşılaştır. Beğendiğini kabul et, sohbet açılsın.</p></div></div>
+        </div>
+        <div class="how-col seller">
+          <span class="how-tag">Satıcıysan</span><h3>Alıcıyı bekleme, bul.</h3>
+          <div class="step"><span class="num">1</span><div><b>Sana uygun talepleri gör</b><p>Yapay zekâ, sattığın ürünlere uyan talepleri eşleştirir ve uyum puanıyla listeler.</p></div></div>
+          <div class="step"><span class="num">2</span><div><b>Teklifini ver</b><p>Fiyatını, durumunu ve teslimatını yaz. Teklifini sadece alıcı görür, rakiplerin göremez.</p></div></div>
+          <div class="step"><span class="num">3</span><div><b>Satışı kapat</b><p>Alıcı kabul edince sohbet açılır. Hazır alıcıya sat, reklama para harcama.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Canlı talepler</span><h2>Şu an bunları almak isteyenler var.</h2></div>
+        <a href="#/talepler" class="btn btn-dark">Tüm talepleri gör →</a>
+      </div>
+      <div class="req-grid">${reqs.slice(0,6).map(reqCard).join('') || '<div class="empty">Görünür kategori yok.</div>'}</div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Fark</span><h2>Neden almakisterim?</h2></div></div>
+      <div class="compare">
+        <div class="compare-row head"><div></div><div>Klasik ilan siteleri</div><div>almakisterim</div></div>
+        <div class="compare-row"><div>Kim kimi arar?</div><div>Alıcı yüzlerce ilanı gezer</div><div>Satıcılar alıcıya gelir</div></div>
+        <div class="compare-row"><div>Fiyat</div><div>Pazarlık tek tek yapılır</div><div>Satıcılar en iyi fiyatı verir</div></div>
+        <div class="compare-row"><div>Telefon numaran</div><div>Herkese açık</div><div>Gizli, sohbet platform içinde</div></div>
+        <div class="compare-row"><div>Satıcı için</div><div>İlan verip bekler</div><div>Hazır alıcıya doğrudan ulaşır</div></div>
+        <div class="compare-row"><div>İlan yazmak</div><div>Uzun formlar</div><div>Bir cümle yeter, yapay zekâ düzenler</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Güven</span><h2>Güvenli, temiz, spamsız.</h2></div></div>
+      <div class="trust">
+        <div class="trust-item"><div class="t-ico">${ICON.lock}</div><b>Numaran gizli</b><p>Satıcılar seni arayamaz. Teklifi sen kabul edersen sohbet açılır.</p></div>
+        <div class="trust-item"><div class="t-ico">${ICON.shield}</div><b>Doğrulanmış satıcılar</b><p>Telefon ve vergi bilgisiyle doğrulanan mağazalar rozetle gösterilir.</p></div>
+        <div class="trust-item"><div class="t-ico">${ICON.eye}</div><b>Yapay zekâ denetimi</b><p>Uygunsuz, sahte veya yasa dışı ilan ve teklifler yayından önce yakalanır.</p></div>
+        <div class="trust-item"><div class="t-ico">${ICON.chat}</div><b>Puan ve yorum</b><p>Her alışverişten sonra iki taraf da puan verir. Kötü satıcı elenir.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="band">
+        <span class="eyebrow" style="color:var(--lime)">Satıcılar için</span>
+        <h2>Müşteri aramayı bırak. Müşteriler burada, almak istiyor.</h2>
+        <p class="lead">Galerici, emlakçı, mağaza, usta ya da bireysel satıcı ol: sana uyan talepleri gör ve teklifini ver.</p>
+        <div class="plans">
+          <div class="plan"><span class="p-name">Bireysel</span><span class="p-price">0 TL<small> /ay</small></span><ul><li>Ayda 5 ücretsiz teklif</li><li>Talep bildirimleri</li><li>Puan ve yorum</li></ul><a href="#/satici" class="btn btn-ghost" style="color:var(--ink)">Hemen başla</a></div>
+          <div class="plan hot"><span class="p-name">Kredi paketi · En popüler</span><span class="p-price">249 TL<small> / 50 kredi</small></span><ul><li>Her teklif 1 kredi</li><li>Teklifini öne çıkarma</li><li>Süresiz kullanım</li></ul><a href="#/satici" class="btn btn-dark">Kredi al</a></div>
+          <div class="plan"><span class="p-name">Mağaza üyeliği</span><span class="p-price">999 TL<small> /ay</small></span><ul><li>Sınırsız teklif</li><li>Doğrulanmış mağaza rozeti</li><li>Yapay zekâ eşleşme alarmı</li></ul><a href="#/satici" class="btn btn-lime">Mağaza aç</a></div>
+        </div>
+        <p class="plan-note">Fiyatlar örnektir, yönetim panelinden belirlenecek. * Hedef değerlerdir.</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+let heroTimers = [];
+function clearHeroTimers(){ heroTimers.forEach(t => { clearTimeout(t); clearInterval(t); }); heroTimers = []; }
+function initHome(){
+  // yazı animasyonu
+  const phrases = ['2. el iPhone 13 almak istiyorum, bütçem 20.000 TL','Ankara\'da 2018 sonrası otomatik SUV arıyorum','Bornova\'da öğrenciye uygun 1+1 kiralık','Mutfak dolabı için usta arıyorum, bütçe 50 bin'];
+  const ta = document.getElementById('hero-input');
+  let pi = 0, ci = 0, del = false;
+  const tick = () => {
+    if(!document.body.contains(ta)) return;
+    if(ta.value){ ta.placeholder = ''; heroTimers.push(setTimeout(tick, 600)); return; }
+    const p = phrases[pi];
+    ci += del ? -1 : 1;
+    ta.placeholder = p.slice(0, ci);
+    let d = del ? 22 : 48;
+    if(!del && ci >= p.length){ del = true; d = 1800; }
+    if(del && ci <= 0){ del = false; pi = (pi+1) % phrases.length; d = 300; }
+    heroTimers.push(setTimeout(tick, d));
+  };
+  tick();
+  // canlı teklif akışı
+  const stream = document.getElementById('offer-stream');
+  const offers = [
+    {s:SELLERS.ms, price:19400, note:'Yenilenmiş A+ · 12 ay garanti'},
+    {s:SELLERS.td, price:18750, note:'Kutulu, faturalı · 6 ay garanti'},
+    {s:SELLERS.ak, price:17500, note:'Pil %86 · Kadıköy elden', best:true},
+    {s:SELLERS.ep, price:18200, note:'Pil %87 · 2 gün kargo'},
+  ];
+  let i = 0;
+  const push = () => {
+    if(!document.body.contains(stream)) return;
+    if(i >= offers.length){ stream.innerHTML = ''; i = 0; }
+    const o = offers[i++];
+    const d = document.createElement('div');
+    d.className = 'offer-mini' + (o.best ? ' best' : '');
+    d.innerHTML = sellerLogo(o.s, 'logo-s') + '<div class="meta"><b>'+esc(o.s.name)+' <span style="color:#F5A524">★ '+o.s.rating+'</span></b><span>'+esc(o.note)+'</span></div><div style="text-align:right"><div class="price">'+fmt(o.price)+' ₺</div>'+(o.best ? '<span class="badge b-green">En uygun</span>' : '')+'</div>';
+    stream.appendChild(d);
+  };
+  push();
+  heroTimers.push(setInterval(push, 1900));
+  // canlı sayaç
+  let n = 1284;
+  heroTimers.push(setInterval(() => { const el = document.getElementById('live-count'); if(!el) return; n += Math.random() > .4 ? 1 : 0; el.textContent = fmt(n); }, 2600));
+}
+function fillHero(text){ const ta = document.getElementById('hero-input'); ta.value = text; ta.focus(); }
+function startCreate(){
+  const v = document.getElementById('hero-input').value.trim();
+  try{ sessionStorage.setItem('ak_draft', v); }catch(e){}
+  window.__draft = v;
+  location.hash = '#/olustur';
+}
+
+/* ----- Talepler ----- */
+let F = {k:'', q:'', city:'Tüm Türkiye', sort:'yeni', urgent:false};
+function pageBrowse(params){
+  if(params.k !== undefined) F.k = params.k;
+  const cats = visibleCats();
+  if(F.k && !cats.some(c => c.id === F.k)) F.k = '';
+  return `
+  <div class="wrap">
+    <div class="page-head"><span class="eyebrow">Talepler</span><h1>Almak isteyenler</h1><p>Sattığın şeyi arayan alıcıları bul ve teklifini ver.</p></div>
+    <div class="browse">
+      <aside class="filters">
+        <h5>Kategori</h5>
+        <div class="f-cat ${F.k?'':'on'}" onclick="setF('k','')">Tümü <span>${visibleReqs().length}</span></div>
+        ${cats.map(c => '<div class="f-cat '+(F.k===c.id?'on':'')+'" onclick="setF(\'k\',\''+c.id+'\')">'+c.ico+' '+esc(c.name)+' <span>'+visibleReqs().filter(r => r.cat===c.id).length+'</span></div>').join('')}
+        <h5>Şehir</h5>
+        <select class="select" onchange="setF('city',this.value)">${CITIES.map(c => '<option '+(F.city===c?'selected':'')+'>'+c+'</option>').join('')}</select>
+        <h5>Diğer</h5>
+        <div class="check-row">Sadece acil talepler <button class="switch ${F.urgent?'on':''}" aria-label="Sadece acil" onclick="setF('urgent',${!F.urgent})"></button></div>
+      </aside>
+      <div>
+        <div class="toolbar">
+          <label class="search-big">${ICON.search}<input class="input" id="q" placeholder="Talep ara: iPhone, kiralık, usta..." value="${esc(F.q)}" oninput="F.q=this.value;renderList()"></label>
+          <div class="seg">
+            <button class="${F.sort==='yeni'?'on':''}" onclick="setF('sort','yeni')">En yeni</button>
+            <button class="${F.sort==='butce'?'on':''}" onclick="setF('sort','butce')">Yüksek bütçe</button>
+            <button class="${F.sort==='az'?'on':''}" onclick="setF('sort','az')">Az teklifli</button>
+          </div>
+        </div>
+        <div class="req-grid" id="list" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
+      </div>
+    </div>
+  </div>`;
+}
+function setF(k, v){ F[k] = v; render(); }
+function renderList(){
+  const q = F.q.toLocaleLowerCase('tr');
+  let list = visibleReqs().filter(r => (!F.k || r.cat === F.k) && (F.city === 'Tüm Türkiye' || r.city === F.city) && (!F.urgent || r.urgent) && (!q || (r.title + ' ' + r.desc).toLocaleLowerCase('tr').includes(q)));
+  if(F.sort === 'yeni') list.sort((a,b) => a.hours - b.hours);
+  if(F.sort === 'butce') list.sort((a,b) => b.max - a.max);
+  if(F.sort === 'az') list.sort((a,b) => a.offers.length - b.offers.length);
+  document.getElementById('list').innerHTML = list.map(reqCard).join('') || '<div class="empty" style="grid-column:1/-1">Bu filtrelere uyan talep yok. Filtreleri değiştirmeyi dene.</div>';
+}
+
+/* ----- Talep detayı ----- */
+let detailView = 'alici', offerSort = 'akilli';
+function pageDetail(id){
+  const r = S.requests.find(x => x.id === id);
+  if(!r || S.hidden.includes(r.cat)) return '<div class="wrap"><div class="page-head"><h1>Talep bulunamadı</h1><p>Bu talep kaldırılmış veya kategorisi gizlenmiş olabilir.</p></div><a class="btn btn-primary" href="#/talepler">Taleplere dön</a><div style="height:80px"></div></div>';
+  const c = catOf(r.cat); const daysLeft = r.days;
+  return `
+  <div class="wrap">
+    <div class="crumb"><a href="#/">Ana sayfa</a> / <a href="#/talepler?k=${c.id}">${esc(c.name)}</a> / Talep</div>
+    <div class="detail" style="margin-top:12px">
+      <div>
+        <div class="panel">
+          <div class="rq-top"><span class="badge b-violet">${c.ico} ${esc(c.name)}</span>${r.urgent ? '<span class="badge b-coral">⚡ Acil</span>' : ''}<span class="badge b-amber">${esc(r.cond)}</span><span style="font-size:13px;color:var(--muted);margin-left:auto">${ago(r.hours)}</span></div>
+          <h1>${esc(r.title)}</h1>
+          <p style="font-size:16.5px;color:var(--ink-2)">${esc(r.desc)}</p>
+          <div class="kv">
+            <div><small>Bütçe</small><b>${r.min ? fmt(r.min)+' – ' : ''}${fmt(r.max)} TL</b></div>
+            <div><small>Konum</small><b>${esc(r.city)}${r.district ? ', '+esc(r.district) : ''}</b></div>
+            <div><small>Durum</small><b>${esc(r.cond)}</b></div>
+            <div><small>Teklif</small><b>${r.offers.length} teklif</b></div>
+          </div>
+          ${r.tags.length ? '<div class="tags">'+r.tags.map(t => '<span class="tag">'+esc(t)+'</span>').join('')+'</div>' : ''}
+        </div>
+
+        <div class="view-switch">
+          <span style="font-size:13px;color:var(--muted);font-weight:600">Önizleme görünümü:</span>
+          <div class="seg">
+            <button class="${detailView==='alici'?'on':''}" onclick="detailView='alici';render()">👤 Alıcı gözüyle</button>
+            <button class="${detailView==='satici'?'on':''}" onclick="detailView='satici';render()">🏪 Satıcı gözüyle</button>
+          </div>
+        </div>
+        ${detailView === 'alici' ? buyerOffers(r) : sellerForm(r)}
+      </div>
+
+      <aside class="side-stack">
+        <div class="panel">
+          <small style="color:var(--muted);font-size:13px">Alıcının bütçesi</small>
+          <div class="big-budget">${fmt(r.max)} TL</div>
+          <small style="color:var(--muted);font-size:13px">Teklif toplama süresi bitimine</small>
+          <div class="countdown"><div><b>${daysLeft}</b><small>gün</small></div><div><b>${(r.id.charCodeAt(1)*7)%24}</b><small>saat</small></div><div><b>${(r.id.charCodeAt(1)*13)%60}</b><small>dakika</small></div></div>
+          <button class="btn btn-primary btn-lg" style="width:100%;margin-top:16px" onclick="detailView='satici';render();setTimeout(()=>document.getElementById('of-price')?.focus(),50)">Teklif ver</button>
+          <button class="btn btn-ghost" style="width:100%;margin-top:10px" onclick="toast('Benzer talepler için alarm kuruldu.','🔔')">🔔 Benzer taleplerde haber ver</button>
+        </div>
+        <div class="panel">
+          <div class="buyer-box"><span class="avatar">${initials(r.buyer.name)}</span><div><b>${esc(r.buyer.name)}</b><div style="font-size:13px;color:var(--muted)">★ ${r.buyer.rating} alıcı puanı</div></div>${r.buyer.verified ? '<span style="margin-left:auto">'+verifiedBadge+'</span>' : ''}</div>
+          <div class="lock-note">${ICON.lock}<span>Alıcının telefon numarası gizlidir. Teklif kabul edilince platform içinde sohbet açılır.</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+}
+function buyerOffers(r){
+  if(!r.offers.length) return '<div class="empty"><div style="font-size:40px">⏳</div><b style="color:var(--ink);font-size:18px;display:block;margin:8px 0">Henüz teklif yok</b>Uygun satıcılara bildirim gönderildi. İlk teklif gelince telefonuna SMS düşecek.</div>';
+  const offers = r.offers.slice();
+  const lo = Math.min(...offers.map(o => o.price));
+  const scores = offers.map(o => offerScore(o, offers));
+  const bestIdx = scores.indexOf(Math.max(...scores));
+  const bestOffer = offers[bestIdx];
+  const order = offers.map((o,i) => ({o, i, sc:scores[i]}));
+  if(offerSort === 'akilli') order.sort((a,b) => b.sc - a.sc);
+  if(offerSort === 'fiyat') order.sort((a,b) => a.o.price - b.o.price);
+  if(offerSort === 'puan') order.sort((a,b) => (SELLERS[b.o.s]||b.o.seller).rating - (SELLERS[a.o.s]||a.o.seller).rating);
+  const acc = S.accepted[r.id];
+  const bs = SELLERS[bestOffer.s] || bestOffer.seller;
+  return `
+    <div class="offers-summary">
+      <div class="os"><small>Gelen teklif</small><b>${offers.length}</b></div>
+      <div class="os good"><small>En düşük teklif</small><b>${fmt(lo)} TL</b></div>
+      <div class="os"><small>Bütçene göre</small><b>%${Math.max(0, Math.round((1 - lo / r.max) * 100))} tasarruf</b></div>
+    </div>
+    <div class="ai-box"><span class="ai-ico">${ICON.spark}</span><div><b>Yapay zekâ önerisi</b><p><b style="display:inline">${esc(bs.name)}</b> fiyat, satıcı puanı${bestOffer.warranty ? ' ve garanti' : ''} dengesinde en iyi teklif görünüyor (${fmt(bestOffer.price)} TL).</p></div></div>
+    <div class="toolbar" style="justify-content:space-between">
+      <b style="font-size:18px">Teklifler</b>
+      <div class="seg">
+        <button class="${offerSort==='akilli'?'on':''}" onclick="offerSort='akilli';render()">Akıllı sıralama</button>
+        <button class="${offerSort==='fiyat'?'on':''}" onclick="offerSort='fiyat';render()">En ucuz</button>
+        <button class="${offerSort==='puan'?'on':''}" onclick="offerSort='puan';render()">En yüksek puan</button>
+      </div>
+    </div>
+    ${order.map(({o, i}) => {
+      const s = SELLERS[o.s] || o.seller;
+      const diff = Math.round((1 - o.price / r.max) * 100);
+      const isAcc = acc === i;
+      return '<div class="offer '+(isAcc ? 'accepted' : i === bestIdx ? 'top' : '')+'">' +
+        sellerLogo(s) +
+        '<div><div class="s-name">'+esc(s.name)+(s.verified ? ' '+verifiedBadge : '')+'</div>' +
+        '<div class="s-meta">'+esc(s.type)+' · <span style="color:#F5A524">★ '+s.rating+'</span> · '+fmt(s.sales)+' satış · '+ago(o.hours)+'</div>' +
+        '<div class="s-note">'+esc(o.note)+'</div>' +
+        '<div class="s-badges"><span class="badge b-violet">'+esc(o.cond)+'</span><span class="badge b-amber">🚚 '+esc(o.delivery)+'</span>'+(o.warranty ? '<span class="badge b-green">🛡 Garantili</span>' : '')+(o.price === lo ? '<span class="badge b-dark">En ucuz</span>' : '')+(i === bestIdx ? '<span class="badge b-green">✦ Önerilen</span>' : '')+'</div></div>' +
+        '<div class="o-right"><div><div class="o-price">'+fmt(o.price)+' TL</div><div class="o-diff" style="color:'+(diff >= 0 ? 'var(--green)' : 'var(--coral)')+'">'+(diff >= 0 ? 'Bütçenin %'+diff+' altında' : 'Bütçenin %'+(-diff)+' üstünde')+'</div></div>' +
+        (acc === undefined ? '<button class="btn btn-primary btn-sm" onclick="acceptOffer(\''+r.id+'\','+i+')">Teklifi kabul et</button>' : isAcc ? '<span class="badge b-violet" style="padding:8px 12px">'+ICON.check+' Kabul edildi · sohbet açık</span>' : '<span style="font-size:12.5px;color:var(--muted)">Başka teklif seçildi</span>') +
+        '</div></div>';
+    }).join('')}
+    <p style="font-size:13px;color:var(--muted);margin-top:6px">🔒 Teklif fiyatlarını sadece talep sahibi görür. Satıcılar birbirinin fiyatını göremez.</p>`;
+}
+function sellerForm(r){
+  const mine = r.offers.find(o => o.mine);
+  if(mine) return '<div class="panel"><div style="display:flex;gap:12px;align-items:center"><span class="t-ico" style="width:44px;height:44px;border-radius:14px;background:var(--green-soft);color:var(--green);display:grid;place-items:center">'+ICON.check+'</span><div><b style="font-size:18px">Teklifin gönderildi: '+fmt(mine.price)+' TL</b><div style="color:var(--muted);font-size:14px">Alıcı kabul ederse sana SMS ve e-posta ile haber vereceğiz.</div></div></div></div>';
+  return `
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+      <div><b style="font-size:20px;font-family:'Bricolage Grotesque'">Teklifini ver</b><div style="font-size:13.5px;color:var(--muted)">Bu talepte ${r.offers.length} teklif var. Fiyatları sadece alıcı görür.</div></div>
+      <span class="credit-pill" style="display:flex">⚡ ${S.credits} kredi · teklif 1 kredi</span>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="of-price">Teklif fiyatın (TL)</label><input class="input" id="of-price" type="number" inputmode="numeric" placeholder="Örn. ${fmt(Math.round(r.max*.92))}"></div>
+      <div class="field"><label for="of-cond">Ürün durumu</label><input class="input" id="of-cond" placeholder="Örn. 2. el · Çok iyi"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="of-del">Teslimat</label><select class="select" id="of-del"><option>Ertesi gün kargo</option><option>Aynı gün kurye</option><option>Elden teslim</option><option>Mağazada teslim</option></select></div>
+      <div class="field"><label>Garanti</label><div class="check-row" style="padding:10px 0">Garantili ürün <button class="switch" id="of-war" aria-label="Garantili" onclick="this.classList.toggle('on')"></button></div></div>
+    </div>
+    <div class="field"><label for="of-note">Alıcıya not</label><textarea class="textarea" id="of-note" placeholder="Ürünün öne çıkan özellikleri, fotoğraf, iade koşulları..."></textarea></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-primary btn-lg" onclick="sendOffer('${r.id}')">Teklifi gönder · 1 kredi</button>
+      <button class="btn btn-ghost" onclick="aiOfferNote('${r.id}')">${ICON.spark} Notu yapay zekâ yazsın</button>
+    </div>
+  </div>`;
+}
+function aiOfferNote(id){
+  const r = S.requests.find(x => x.id === id);
+  const el = document.getElementById('of-note');
+  el.value = 'Merhaba, talebinizdeki ' + r.title.replace(/ almak istiyorum| arıyorum/i,'').toLocaleLowerCase('tr') + ' için ' + (r.tags.length ? r.tags.slice(0,2).join(', ').toLocaleLowerCase('tr') + ' özelliklerine uygun ' : '') + 'ürünümüz hazır. Fotoğraf ve detayları sohbette hemen paylaşabilirim.';
+  toast('Not taslağı hazır, istediğin gibi düzenleyebilirsin.','✦');
+}
+function sendOffer(id){
+  if(!S.user){ openLogin(() => sendOffer(id)); return; }
+  const price = parseInt(document.getElementById('of-price').value, 10);
+  if(!price || price < 1){ toast('Lütfen geçerli bir fiyat yaz.','!'); return; }
+  if(S.credits < 1){ toast('Kredin bitti. Satıcı panelinden kredi alabilirsin.','!'); return; }
+  const note = maskContacts(document.getElementById('of-note').value.trim() || 'Ürünüm hazır, detayları sohbette paylaşabilirim.');
+  const r = S.requests.find(x => x.id === id);
+  r.offers.push({s:null, seller:{name:S.user.name + ' Mağaza', type:'Mağaza', rating:5.0, sales:0, verified:true, color:'#0F0C24'}, price, cond:document.getElementById('of-cond').value || 'Belirtilmedi', delivery:document.getElementById('of-del').value, note, warranty:document.getElementById('of-war').classList.contains('on'), hours:0.01, mine:true});
+  S.credits -= 1;
+  S.myOffers.push({rid:id, title:r.title, price, status:'Bekliyor'});
+  save(); renderNavRight(); render();
+  toast('Teklifin alıcıya iletildi. 1 kredi düştü.','⚡');
+}
+function acceptOffer(id, idx){
+  if(!S.user){ openLogin(() => acceptOffer(id, idx)); return; }
+  S.accepted[id] = idx; save(); render(); confetti();
+  const r = S.requests.find(x => x.id === id); const o = r.offers[idx]; const s = SELLERS[o.s] || o.seller;
+  openModal('<div style="font-size:46px">🎉</div><h3>Anlaştınız!</h3><p class="sub"><b>'+esc(s.name)+'</b> ile '+fmt(o.price)+' TL teklif için sohbet açıldı. Satıcıya bildirim gönderildi.</p>' +
+    '<div style="background:var(--bg);border-radius:16px;padding:14px;font-size:14px;margin-bottom:16px"><b>'+esc(s.name)+':</b> Merhaba, teklifimi kabul ettiğiniz için teşekkürler! Teslimat için uygun zamanınızı yazar mısınız?</div>' +
+    '<button class="btn btn-primary btn-lg" style="width:100%" onclick="closeModal()">Sohbete git</button><p style="font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center">Diğer satıcılara talebin kapandığı bildirilecek.</p>');
+}
+
+/* ----- Talep oluştur ----- */
+let draft = null;
+function pageCreate(){
+  let txt = window.__draft || ''; try{ txt = txt || sessionStorage.getItem('ak_draft') || ''; sessionStorage.removeItem('ak_draft'); }catch(e){}
+  window.__draft = '';
+  draft = {title:'', cat:visibleCats()[0]?.id || '', min:'', max:'', city:'Tüm Türkiye', cond:'Farketmez', desc:'', tags:[], urgent:false, days:14, raw:txt};
+  return `
+  <div class="wrap">
+    <div class="page-head"><span class="eyebrow">Ücretsiz talep</span><h1>Ne almak istiyorsun?</h1><p>Bir cümle yaz, gerisini yapay zekâ düzenlesin. Satıcılar sana teklif versin.</p></div>
+    <div class="create">
+      <div>
+        <div class="ai-composer">
+          <h3><span class="ai-ico" style="width:34px;height:34px;border-radius:11px;background:var(--violet);display:grid;place-items:center">${ICON.spark}</span> Kendi cümlelerinle anlat</h3>
+          <textarea id="ai-text" placeholder="Örn. 2. el iPhone 13 almak istiyorum, 128 GB olsun, faturalı olursa iyi olur. Bütçem 20.000 TL, İstanbul'dayım.">${esc(txt)}</textarea>
+          <div class="row"><span class="ai-status" id="ai-status">Yapay zekâ kategori, bütçe, şehir ve özellikleri senin için doldurur.</span><button class="btn btn-lime" onclick="runAI()">${ICON.spark} Yapay zekâ ile düzenle</button></div>
+        </div>
+        <div id="mod-result"></div>
+        <div class="panel">
+          <div class="field"><label for="f-title">İlan başlığı</label><input class="input" id="f-title" placeholder="Örn. 2. el iPhone 13 almak istiyorum" oninput="draft.title=this.value;updPrev()"></div>
+          <div class="row2">
+            <div class="field"><label for="f-cat">Kategori</label><select class="select" id="f-cat" onchange="draft.cat=this.value;updPrev()">${visibleCats().map(c => '<option value="'+c.id+'">'+c.ico+' '+esc(c.name)+'</option>').join('')}</select></div>
+            <div class="field"><label for="f-city">Şehir</label><select class="select" id="f-city" onchange="draft.city=this.value;updPrev()">${CITIES.map(c => '<option>'+c+'</option>').join('')}</select></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="f-min">En az bütçe (TL)</label><input class="input" id="f-min" type="number" inputmode="numeric" placeholder="Örn. 15000" oninput="draft.min=this.value;updPrev()"></div>
+            <div class="field"><label for="f-max">En fazla bütçe (TL)</label><input class="input" id="f-max" type="number" inputmode="numeric" placeholder="Örn. 20000" oninput="draft.max=this.value;updPrev()"></div>
+          </div>
+          <div class="field"><label>Ürün durumu</label><div class="cond-seg" id="f-cond">${['Farketmez','Sıfır','2. el','Hizmet'].map(c => '<button class="'+(c==='Farketmez'?'on':'')+'" onclick="setCond(this,\''+c+'\')">'+c+'</button>').join('')}</div></div>
+          <div class="field"><label for="f-desc">Detaylar</label><textarea class="textarea" id="f-desc" placeholder="Olmazsa olmazların, tercih ettiğin marka/model, teslimat şekli..." oninput="draft.desc=this.value;updPrev()"></textarea></div>
+          <div class="row2">
+            <div class="field"><label for="f-days">Teklif toplama süresi</label><select class="select" id="f-days" onchange="draft.days=+this.value"><option value="7">7 gün</option><option value="14" selected>14 gün</option><option value="30">30 gün</option></select></div>
+            <div class="field"><label>Acil mi?</label><div class="check-row" style="padding:10px 0">Acil etiketi ekle <button class="switch" id="f-urgent" aria-label="Acil" onclick="this.classList.toggle('on');draft.urgent=this.classList.contains('on');updPrev()"></button></div></div>
+          </div>
+          <button class="btn btn-primary btn-lg" style="width:100%" onclick="publishReq()">Talebimi ücretsiz yayınla →</button>
+          <p style="font-size:12.5px;color:var(--muted);text-align:center;margin-top:10px">${ICON.lock} Telefon numaran ve e-postan satıcılara gösterilmez.</p>
+        </div>
+      </div>
+      <aside class="side-stack">
+        <div><div class="preview-label">Canlı önizleme</div><div id="prev"></div></div>
+        <div class="reach"><b id="reach-n">0</b><div><b style="font-family:Inter;font-size:15px;letter-spacing:0;display:block">satıcıya anında bildirim gidecek</b><span style="font-size:13px">Bu kategori ve şehirde eşleşen satıcılar (tahmini)</span></div></div>
+      </aside>
+    </div>
+  </div>`;
+}
+function setCond(btn, c){ draft.cond = c; document.querySelectorAll('#f-cond button').forEach(b => b.classList.toggle('on', b === btn)); updPrev(); }
+function updPrev(){
+  const r = {id:'prev', title:draft.title || 'İlan başlığın burada görünecek', cat:draft.cat || CATS[0].id, min:+draft.min || 0, max:+draft.max || 0, city:draft.city, district:'', cond:draft.cond, desc:draft.desc || 'Detaylar burada görünecek.', offers:[], urgent:draft.urgent};
+  document.getElementById('prev').innerHTML = reqCard(r).replace('onclick=', 'data-x=');
+  const base = {elektronik:142, vasita:96, emlak:118, ev:64, moda:51, hizmet:88, yedek:47, sanayi:23, hobi:39, bebek:28, spor:31, toptan:57}[r.cat] || 40;
+  document.getElementById('reach-n').textContent = draft.city === 'Tüm Türkiye' ? base * 3 : base;
+}
+function runAI(){
+  const text = document.getElementById('ai-text').value.trim();
+  if(text.length < 5){ toast('Önce ne almak istediğini birkaç kelimeyle yaz.','!'); return; }
+  const st = document.getElementById('ai-status');
+  st.innerHTML = '<span class="spinner"></span> Yapay zekâ talebini düzenliyor...';
+  setTimeout(() => {
+    const p = aiParse(text); const mod = aiModerate(text);
+    const box = document.getElementById('mod-result');
+    box.innerHTML = '<div class="mod-result mod-'+mod.level+'">'+(mod.level==='ok' ? ICON.check : '⚠')+'<span>'+mod.msg+'</span></div>';
+    if(!visibleCats().some(c => c.id === p.cat)) p.cat = visibleCats()[0]?.id;
+    Object.assign(draft, {title:maskContacts(p.title), cat:p.cat, min:p.min || '', max:p.max || '', city:p.city, cond:p.cond, desc:maskContacts(text), tags:p.tags, urgent:p.urgent, mod:mod.level});
+    document.getElementById('f-title').value = draft.title;
+    document.getElementById('f-cat').value = draft.cat;
+    document.getElementById('f-city').value = draft.city;
+    document.getElementById('f-min').value = draft.min;
+    document.getElementById('f-max').value = draft.max;
+    document.getElementById('f-desc').value = draft.desc;
+    document.querySelectorAll('#f-cond button').forEach(b => b.classList.toggle('on', b.textContent === draft.cond));
+    document.getElementById('f-urgent').classList.toggle('on', draft.urgent);
+    ['f-title','f-cat','f-city','f-min','f-max'].forEach(id => { const el = document.getElementById(id); el.style.boxShadow = '0 0 0 4px #E8FBB0'; el.style.borderColor = '#9BCB10'; setTimeout(() => { el.style.boxShadow = ''; el.style.borderColor = ''; }, 1600); });
+    st.innerHTML = ICON.check + ' Hazır! Alanları kontrol et, istersen düzelt.' + (p.max ? '' : ' Bütçeyi bulamadım, elle ekleyebilirsin.');
+    updPrev();
+  }, 1100);
+}
+function publishReq(){
+  if(!draft.title.trim()){ toast('Bir başlık yaz veya yapay zekâ ile düzenle.','!'); return; }
+  if(!+draft.max){ toast('En fazla bütçeni yaz.','!'); return; }
+  if(draft.mod === 'bad' || aiModerate(draft.title + ' ' + draft.desc).level === 'bad'){ toast('Bu talep incelemeye alındı, onaylanınca yayınlanacak.','⚠'); return; }
+  if(!S.user){ openLogin(publishReq); return; }
+  const id = 'u' + Date.now().toString(36);
+  const r = {id, title:maskContacts(draft.title.trim()), cat:draft.cat, min:+draft.min || 0, max:+draft.max, city:draft.city, district:'', cond:draft.cond, hours:0.01, days:draft.days, urgent:draft.urgent,
+    desc:maskContacts(draft.desc.trim() || draft.title), tags:draft.tags || [], buyer:{name:S.user.name, rating:5.0, verified:true}, offers:[]};
+  S.requests.unshift(r); save();
+  detailView = 'alici';
+  location.hash = '#/talep/' + id;
+  confetti();
+  toast('Talebin yayında! Satıcılara bildirim gönderildi.','🚀');
+  // demo: teklifler gelmeye başlasın
+  const pool = ['td','ms','ak','ep','zt'];
+  [3500, 7500, 12000].forEach((ms, k) => setTimeout(() => {
+    const rr = S.requests.find(x => x.id === id); if(!rr) return;
+    const price = Math.round(rr.max * (0.84 + Math.random() * .14) / 50) * 50;
+    rr.offers.push({s:pool[k], price, cond:rr.cond === 'Sıfır' ? 'Sıfır · Kapalı kutu' : rr.cond === 'Hizmet' ? 'Malzeme + işçilik' : '2. el · Çok iyi', delivery:['Ertesi gün kargo','Aynı gün kurye','Elden teslim'][k], note:['Talebine birebir uyan ürünüm var, faturalı.','Hemen teslim edebilirim, fotoğrafları sohbette paylaşırım.','Uygun fiyat, sorunsuz ürün.'][k], warranty:k !== 2, hours:0.01});
+    save();
+    if(location.hash === '#/talep/' + id) render();
+    toast('Yeni teklif: '+fmt(price)+' TL · '+SELLERS[pool[k]].name,'+1');
+  }, ms));
+}
+
+/* ----- Satıcı paneli ----- */
+function pageSeller(){
+  const reqs = visibleReqs().filter(r => !S.accepted[r.id]);
+  const matches = reqs.map(r => ({r, m: Math.min(98, 62 + ((r.id.charCodeAt(1) * 17 + r.title.length) % 37))})).sort((a,b) => b.m - a.m).slice(0, 6);
+  const ringColor = m => m >= 90 ? ['var(--green-soft)','var(--green)'] : m >= 75 ? ['var(--violet-soft)','var(--violet)'] : ['#FFF4DE','#A86A00'];
+  return `
+  <div class="wrap">
+    <div class="page-head"><span class="eyebrow">Satıcı paneli</span><h1>Sana uygun alıcılar hazır.</h1><p>Yapay zekâ, sattığın ürünlere ve bölgene göre talepleri eşleştirdi.</p></div>
+    <div class="tiles">
+      <div class="tile lime"><small>Teklif kredin</small><b>⚡ ${S.credits}</b><button class="btn btn-dark btn-sm" style="margin-top:8px" onclick="buyCredits()">Kredi al</button></div>
+      <div class="tile"><small>Bu ay verilen teklif</small><b>${38 + S.myOffers.length}</b><span class="delta">▲ %22 geçen aya göre</span></div>
+      <div class="tile"><small>Kabul oranı</small><b>%31</b><span class="delta">▲ ortalamanın üstünde</span></div>
+      <div class="tile"><small>Bu ay satış</small><b>12</b><span class="delta">≈ ${fmt(186400)} TL ciro</span></div>
+    </div>
+    <div class="dash">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px;flex-wrap:wrap"><b style="font-size:20px;font-family:'Bricolage Grotesque'">✦ Yapay zekâ eşleşmeleri</b><span class="badge b-green"><span class="live-dot" style="width:6px;height:6px"></span> Canlı</span></div>
+        ${matches.map(({r, m}) => { const [bg, fg] = ringColor(m); return '<div class="match-row"><div class="ring" style="background:conic-gradient('+fg+' '+m*3.6+'deg, '+bg+' 0)"><div style="width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;color:'+fg+'">%'+m+'</div></div><div><b>'+esc(r.title)+'</b><div class="m-meta">'+catOf(r.cat).ico+' '+esc(catOf(r.cat).name)+' · '+esc(r.city)+' · Bütçe '+fmt(r.max)+' TL · '+r.offers.length+' teklif</div></div><a class="btn btn-primary btn-sm" href="#/talep/'+r.id+'" onclick="detailView=\'satici\'">Teklif ver</a></div>'; }).join('') || '<div class="empty">Şu an eşleşen talep yok.</div>'}
+      </div>
+      <aside class="side-stack">
+        <div class="panel">
+          <b style="font-size:17px">🔔 Talep alarmların</b>
+          <p style="font-size:13.5px;color:var(--muted);margin:4px 0 12px">Bu kriterlere uyan yeni talep gelince SMS ve e-posta alırsın.</p>
+          <div class="alarm-chips"><span>📱 Elektronik</span><span>İstanbul</span><span>Ankara</span><span>Bütçe 10.000 TL+</span></div>
+          <button class="btn btn-ghost btn-sm" style="margin-top:14px" onclick="toast('Alarm düzenleme gerçek sistemde açılacak.','🔔')">Alarmları düzenle</button>
+        </div>
+        <div class="panel">
+          <b style="font-size:17px">Son tekliflerin</b>
+          ${(S.myOffers.length ? S.myOffers.slice().reverse() : [{title:'MacBook Air M2, 16 GB RAM', price:35400, status:'Bekliyor'},{title:'2. el iPhone 13 almak istiyorum', price:18750, status:'Kabul edildi'}]).slice(0,5).map(o => '<div class="my-offer"><span>'+esc(o.title)+'<br><b>'+fmt(o.price)+' TL</b></span><span class="badge '+(o.status==='Kabul edildi'?'b-green':'b-amber')+'">'+o.status+'</span></div>').join('')}
+        </div>
+      </aside>
+    </div>
+  </div>`;
+}
+function buyCredits(){
+  openModal('<h3>Kredi al</h3><p class="sub">Her teklif 1 kredi. Krediler süresizdir.</p>' +
+    [['10 kredi','59 TL'],['50 kredi','249 TL'],['200 kredi','799 TL']].map((p,i) => '<button class="btn btn-ghost" style="width:100%;justify-content:space-between;margin-bottom:10px;border-radius:14px;padding:16px 18px'+(i===1?';border-color:var(--violet);background:var(--violet-soft)':'')+'" onclick="addCredits('+[10,50,200][i]+')"><b>⚡ '+p[0]+'</b><span>'+p[1]+'</span></button>').join('') +
+    '<p style="font-size:12.5px;color:var(--muted);margin-top:6px">Önizleme: ödeme alınmaz. Gerçek sistemde güvenli ödeme sayfası açılır.</p>');
+}
+function addCredits(n){ S.credits += n; save(); closeModal(); renderNavRight(); render(); toast(n + ' kredi hesabına eklendi (demo).','⚡'); }
+
+/* ----- Yönetim paneli ----- */
+let adminTab = 'kategoriler';
+function pageAdmin(){
+  const all = S.requests;
+  return `
+  <div class="wrap">
+    <div class="page-head"><span class="eyebrow">Yönetim paneli</span><h1>Kontrol sende.</h1><p>Kategorileri aç/kapat, içerikleri denetle, platformu izle.</p></div>
+    <div class="notice">${ICON.lock}<span>Gerçek sistemde bu sayfa sadece yönetici hesabıyla açılır. Önizlemede herkese açık.</span></div>
+    <div class="tiles">
+      <div class="tile"><small>Aktif talep</small><b>${visibleReqs().length}</b></div>
+      <div class="tile"><small>Toplam teklif</small><b>${all.reduce((a,r) => a + r.offers.length, 0)}</b></div>
+      <div class="tile"><small>Görünür kategori</small><b>${visibleCats().length}/${CATS.length}</b></div>
+      <div class="tile lime"><small>İnceleme bekleyen</small><b>${MOD_QUEUE.filter(m => !S.modDone.includes(m.id)).length}</b></div>
+    </div>
+    <div class="admin-tabs seg">
+      <button class="${adminTab==='kategoriler'?'on':''}" onclick="adminTab='kategoriler';render()">Kategoriler</button>
+      <button class="${adminTab==='denetim'?'on':''}" onclick="adminTab='denetim';render()">İçerik denetimi</button>
+    </div>
+    <div style="padding-bottom:80px">
+    ${adminTab === 'kategoriler' ? `
+      <p style="color:var(--muted);margin-bottom:14px;font-size:14.5px">Kapattığın kategori sitede hiçbir yerde görünmez (ana sayfa, talepler, talep oluşturma). İçindeki talepler silinmez, kategoriyi tekrar açınca geri gelir.</p>
+      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="S.hidden=[];save();render()">Hepsini aç</button><button class="btn btn-ghost btn-sm" onclick="S.hidden=CATS.map(c=>c.id).filter(id=>id!=='elektronik');save();render()">Sadece Elektronik</button></div>
+      <div class="cat-admin">
+        ${CATS.map(c => { const on = !S.hidden.includes(c.id); const n = all.filter(r => r.cat === c.id).length; return '<div class="cat-admin-item '+(on?'':'off')+'"><span class="ico" style="background:'+c.bg+'">'+c.ico+'</span><div class="info"><b>'+esc(c.name)+'</b><span>'+n+' talep · '+(on ? 'Yayında' : 'Gizli')+'</span></div><button class="switch '+(on?'on':'')+'" role="switch" aria-checked="'+on+'" aria-label="'+esc(c.name)+' görünürlüğü" onclick="toggleCat(\''+c.id+'\')"></button></div>'; }).join('')}
+      </div>` : `
+      <p style="color:var(--muted);margin-bottom:14px;font-size:14.5px">Yapay zekâ şüpheli ilan ve teklifleri yayından önce buraya düşürür. Son kararı sen verirsin.</p>
+      ${MOD_QUEUE.filter(m => !S.modDone.includes(m.id)).map(m => '<div class="mod-item"><div><b>'+esc(m.title)+'</b><div class="why"><span class="badge '+(m.level==='bad'?'b-coral':'b-amber')+'">✦ '+esc(m.why)+'</span></div></div><div style="display:flex;gap:8px"><button class="btn btn-ghost btn-sm" onclick="modAct(\''+m.id+'\',\'onaylandı\')">Onayla</button><button class="btn btn-dark btn-sm" onclick="modAct(\''+m.id+'\',\'reddedildi\')">Reddet</button></div></div>').join('') || '<div class="empty">🎉 İnceleme bekleyen içerik yok.</div>'}
+    `}
+    </div>
+  </div>`;
+}
+function toggleCat(id){
+  const i = S.hidden.indexOf(id);
+  if(i >= 0) S.hidden.splice(i, 1); else S.hidden.push(id);
+  save(); render();
+  toast(catOf(id).name + (i >= 0 ? ' yayına alındı.' : ' gizlendi.'), i >= 0 ? '👁' : '🙈');
+}
+function modAct(id, what){ S.modDone.push(id); save(); render(); toast('İçerik ' + what + '.', '✓'); }
+
+/* ----- Giriş ----- */
+let afterLogin = null;
+function openLogin(cb){
+  afterLogin = typeof cb === 'function' ? cb : null;
+  openModal(`
+    <h3>Hoş geldin 👋</h3>
+    <p class="sub">Giriş yap veya saniyeler içinde hesap oluştur.</p>
+    <button class="google-btn" onclick="doLogin('Google Kullanıcısı')"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Google ile devam et</button>
+    <div class="divider">veya</div>
+    <div class="seg" style="width:100%;margin-bottom:16px"><button class="on" id="tab-tel" style="flex:1" onclick="loginTab('tel')">📱 Telefon</button><button id="tab-mail" style="flex:1" onclick="loginTab('mail')">✉️ E-posta</button></div>
+    <div id="login-body"></div>`);
+  loginTab('tel');
+}
+function loginTab(t){
+  document.getElementById('tab-tel').classList.toggle('on', t === 'tel');
+  document.getElementById('tab-mail').classList.toggle('on', t === 'mail');
+  const b = document.getElementById('login-body');
+  b.innerHTML = t === 'tel'
+    ? '<div class="field"><label for="l-tel">Cep telefonu</label><input class="input" id="l-tel" type="tel" inputmode="tel" placeholder="05xx xxx xx xx"></div><button class="btn btn-primary btn-lg" style="width:100%" onclick="sendCode(\'tel\')">SMS kodu gönder</button>'
+    : '<div class="field"><label for="l-mail">E-posta</label><input class="input" id="l-mail" type="email" placeholder="ornek@mail.com"></div><button class="btn btn-primary btn-lg" style="width:100%" onclick="sendCode(\'mail\')">Giriş kodu gönder</button>';
+}
+function sendCode(t){
+  const v = (document.getElementById(t === 'tel' ? 'l-tel' : 'l-mail').value || '').trim();
+  if(t === 'tel' && v.replace(/\D/g,'').length < 10){ toast('Geçerli bir telefon numarası yaz.','!'); return; }
+  if(t === 'mail' && !/^\S+@\S+\.\S+$/.test(v)){ toast('Geçerli bir e-posta yaz.','!'); return; }
+  document.getElementById('login-body').innerHTML = '<p class="sub" style="margin-bottom:12px">'+(t==='tel' ? 'SMS' : 'E-posta')+' ile gelen 6 haneli kodu yaz. <b>Önizlemede herhangi bir kod çalışır.</b></p><div class="otp">'+Array.from({length:6}, (_, i) => '<input maxlength="1" inputmode="numeric" aria-label="Kod hanesi '+(i+1)+'" oninput="otpNext(this,'+i+')">').join('')+'</div><button class="btn btn-primary btn-lg" style="width:100%;margin-top:16px" onclick="doLogin(\'Demo Kullanıcı\')">Giriş yap</button>';
+  document.querySelector('.otp input').focus();
+}
+function otpNext(el, i){ const all = document.querySelectorAll('.otp input'); if(el.value && all[i+1]) all[i+1].focus(); if([...all].every(x => x.value)) doLogin('Demo Kullanıcı'); }
+function doLogin(name){
+  S.user = {name}; save(); closeModal(); renderNavRight();
+  toast('Giriş yapıldı. Hoş geldin!','👋');
+  if(afterLogin){ const cb = afterLogin; afterLogin = null; cb(); }
+}
+function logout(){ if(confirm('Çıkış yapılsın mı?')){ S.user = null; save(); renderNavRight(); toast('Çıkış yapıldı.','👋'); } }
+
+/* =========================================================
+   YÖNLENDİRME
+   ========================================================= */
+function parseHash(){
+  const h = location.hash.replace(/^#/, '') || '/';
+  const [path, qs] = h.split('?');
+  const params = Object.fromEntries(new URLSearchParams(qs || ''));
+  return {parts:path.split('/').filter(Boolean), params};
+}
+function render(){
+  clearHeroTimers();
+  const {parts, params} = parseHash();
+  const app = document.getElementById('app');
+  const page = parts[0] || '';
+  const scrollY = window.scrollY;
+  if(page === 'talepler'){ app.innerHTML = pageBrowse(params); renderList(); }
+  else if(page === 'talep'){ app.innerHTML = pageDetail(parts[1]); }
+  else if(page === 'olustur'){ app.innerHTML = pageCreate(); updPrev(); if(draft.raw) runAI(); }
+  else if(page === 'satici'){ app.innerHTML = pageSeller(); }
+  else if(page === 'yonetim'){ app.innerHTML = pageAdmin(); }
+  else { app.innerHTML = pageHome(); initHome(); }
+  document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === page));
+  if(render.last !== location.hash) window.scrollTo(0, 0); else window.scrollTo(0, scrollY);
+  render.last = location.hash;
+  document.getElementById('nav-links').classList.remove('open');
+}
+window.addEventListener('hashchange', render);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+renderNavRight();
+render();
+</script>
+</body>
+</html>
