@@ -161,7 +161,7 @@
       <label for="pass">Şifre</label>
       <input type="password" id="pass" placeholder="••••••••" value="••••••••">
     </div>
-    <button class="btn-primary btn-gold" onclick="login()">Giriş Yap</button>
+    <button class="btn-primary btn-gold" type="button" data-action="login">Giriş Yap</button>
     <p class="login-note">Demo görünümü — herhangi bir bilgiyle giriş yapabilirsin.</p>
   </div>
 </div>
@@ -171,13 +171,13 @@
   <div class="app-layout">
     <aside class="sidebar">
       <div class="sidebar-logo"><span class="login-mark">M</span>Müşterini Bul</div>
-      <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard', this)"><span class="dot"></span><span>Panel</span></div>
-      <div class="nav-item" data-page="apify" onclick="showPage('apify', this)"><span class="dot"></span><span>Apify Arama</span></div>
-      <div class="nav-item" data-page="netgsm" onclick="showPage('netgsm', this)"><span class="dot"></span><span>Netgsm / SMS</span></div>
-      <div class="nav-item" data-page="ayarlar" onclick="showPage('ayarlar', this)"><span class="dot"></span><span>Ayarlar</span></div>
+      <div class="nav-item active" data-page="dashboard"><span class="dot"></span><span>Panel</span></div>
+      <div class="nav-item" data-page="apify"><span class="dot"></span><span>Apify Arama</span></div>
+      <div class="nav-item" data-page="netgsm"><span class="dot"></span><span>Netgsm / SMS</span></div>
+      <div class="nav-item" data-page="ayarlar"><span class="dot"></span><span>Ayarlar</span></div>
       <div class="sidebar-foot">
         <div class="sidebar-user"><span class="avatar">DT</span><span>Demo Toptancı</span></div>
-        <span class="logout-link" onclick="logout()">Çıkış yap</span>
+        <span class="logout-link" data-action="logout">Çıkış yap</span>
       </div>
     </aside>
 
@@ -224,7 +224,7 @@
             <div class="field"><label>Bölge / İl</label><input type="text" id="bolge" placeholder="Örn. Bursa, Nilüfer" value="Bursa, Nilüfer"></div>
             <div class="field"><label>Anahtar kelime</label><input type="text" id="kelime" placeholder="Örn. hırdavat toptan" value="hırdavat toptan"></div>
           </div>
-          <button class="btn-small primary" onclick="runSearch()">Ara</button>
+          <button class="btn-small primary" type="button" data-action="search">Ara</button>
 
           <div id="results-empty" class="empty-state">Henüz arama yapılmadı. Bölge ve anahtar kelime girip "Ara"ya bas.</div>
 
@@ -237,7 +237,7 @@
               <span id="results-count">0 işletme bulundu</span>
               <div style="display:flex; gap:10px;">
                 <button class="btn-small">Excel indir</button>
-                <button class="btn-small primary" onclick="showPage('netgsm', document.querySelector('[data-page=netgsm]'))">Netgsm'e aktar →</button>
+                <button class="btn-small primary" type="button" data-goto="netgsm">Netgsm'e aktar →</button>
               </div>
             </div>
           </div>
@@ -263,8 +263,8 @@
             <div class="char-count"><span id="char-count">0</span> karakter</div>
           </div>
           <div style="display:flex; gap:10px; margin-top:10px;">
-            <button class="btn-small" onclick="previewSms()">Önizle</button>
-            <button class="btn-small primary" onclick="sendSms()">Gönder</button>
+            <button class="btn-small" type="button" data-action="preview-sms">Önizle</button>
+            <button class="btn-small primary" type="button" data-action="send-sms">Gönder</button>
           </div>
           <div class="sms-preview" id="sms-preview-box">
             <span class="eyebrow">Önizleme</span>
@@ -312,59 +312,7 @@
   </div>
 </div>
 
-<script>
-  function login(){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('app-shell').style.display='block';
-  }
-  function logout(){
-    document.getElementById('app-shell').style.display='none';
-    document.getElementById('login-screen').style.display='flex';
-  }
-  function showPage(name, el){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById('page-'+name).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    if(el) el.classList.add('active');
-  }
-
-  const sampleResults = [
-    ['Nilüfer Hırdavat San. Tic.', 'Nilüfer, Bursa', '0224 xxx xx xx'],
-    ['Karaca Toptan Malzeme', 'Osmangazi, Bursa', '0224 xxx xx xx'],
-    ['Aydın Nalburiye Ltd.', 'Yıldırım, Bursa', '0224 xxx xx xx'],
-    ['Ege Hırdavat Merkezi', 'Nilüfer, Bursa', '0224 xxx xx xx'],
-    ['Bursa Toptan Vida', 'Osmangazi, Bursa', '0224 xxx xx xx'],
-  ];
-
-  function runSearch(){
-    const body = document.getElementById('results-body');
-    body.innerHTML='';
-    sampleResults.forEach(r=>{
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${r[0]}</td><td>${r[1]}</td><td class="tel-ok">${r[2]}</td>`;
-      body.appendChild(tr);
-    });
-    document.getElementById('results-empty').style.display='none';
-    document.getElementById('results-wrap').style.display='block';
-    document.getElementById('results-count').textContent = sampleResults.length + ' işletme bulundu';
-    document.getElementById('netgsm-list-info').textContent = sampleResults.length + ' işletme Apify Arama\'dan aktarıldı, gönderime hazır.';
-  }
-
-  function updateCharCount(){
-    document.getElementById('char-count').textContent = document.getElementById('sms-text').value.length;
-  }
-  document.getElementById('sms-text').addEventListener('input', updateCharCount);
-  updateCharCount();
-
-  function previewSms(){
-    const box = document.getElementById('sms-preview-box');
-    document.getElementById('sms-preview-text').textContent = document.getElementById('sms-text').value;
-    box.classList.add('show');
-  }
-  function sendSms(){
-    alert('Demo görünümde gönderim simülasyonu — canlı sistemde bu adımda Netgsm üzerinden gerçek gönderim yapılır.');
-  }
-</script>
+<script src="panel.js"></script>
 
 </body>
 </html>
